@@ -62,7 +62,14 @@ public class DatabaseAccess2 {
         return list;
     }*/
 
-    public String gettamildat(String s) {
+
+
+    public Cursor getDayReacord2(String s) {
+        String data = new String();
+        return database.rawQuery("SELECT * FROM astro WHERE dates='"+s+"'", null);
+    }
+
+    /*public String gettamildat(String s) {
         String data = new String();
         Cursor cursor = database.rawQuery("SELECT * FROM astro WHERE date='"+s+"'", null);
         cursor.moveToFirst();
@@ -72,7 +79,7 @@ public class DatabaseAccess2 {
         }
         cursor.close();
         return data;
-    }
+    }*/
 
 
     public static DatabaseAccess2 getInstance1(Context context) {
@@ -82,7 +89,7 @@ public class DatabaseAccess2 {
         return instance1;
     }
 
-    public String getbox1(String s) {
+    /*public String getbox1(String s) {
         String data = new String();
         Cursor cursor = database.rawQuery("SELECT * FROM astro WHERE date='"+s+"'", null);
         cursor.moveToFirst();
@@ -236,5 +243,5 @@ public class DatabaseAccess2 {
         }
         cursor.close();
         return data;
-    }
+    }*/
 }

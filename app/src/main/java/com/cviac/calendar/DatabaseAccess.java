@@ -65,6 +65,15 @@ public class DatabaseAccess {
         cursor.close();
         return list;
     }*/
+
+    public Cursor getDayReacord(String s) {
+        String data = new String();
+        return database.rawQuery("SELECT * FROM calendar WHERE dates='"+s+"'", null);
+    }
+
+
+
+    /*
     public String getname(String s) {
         String data = new String();
         Cursor cursor = database.rawQuery("SELECT * FROM calendar WHERE dates='"+s+"'", null);
@@ -201,5 +210,5 @@ public class DatabaseAccess {
         }
         cursor.close();
         return data;
-    }
+    }*/
 }
