@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">தினசரி நாள்காட்டி</string>
+    <string name="app_name"> நாள்காட்டி</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_tamil_calendar">தினசரி நாள்காட்டி</string>
+
+    <string name="title_activity_tamil_calendar">நாள்காட்டி</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_monthly">Monthly</string>
 </resources>

@@ -7,17 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.cviac.calendar.MainActivity">
+    tools:context="com.cviac.calendar.Splash">
 
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/logo"
-        android:id="@+id/spimage"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="நாள்காட்டி"
@@ -31,4 +22,15 @@
         android:textSize="25dp"
         android:layout_marginTop="32dp"
         android:id="@+id/textView2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:background="@drawable/feature"
+        android:id="@+id/spimage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

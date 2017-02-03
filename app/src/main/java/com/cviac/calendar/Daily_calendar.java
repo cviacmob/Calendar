@@ -2,6 +2,7 @@ package com.cviac.calendar;
 
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -10,7 +11,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +28,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Tamil_calendar extends ActionBarActivity {
+public class Daily_calendar extends ActionBarActivity {
 
     private static String ARG_SECTION_NUMBER;
     /**
@@ -104,10 +107,16 @@ public class Tamil_calendar extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        Intent in;
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
+        }
+        if(id==R.id.action){
+            in=new Intent(Daily_calendar.this,Monthly.class);
+            startActivity(in);
         }
 
         return super.onOptionsItemSelected(item);
@@ -159,20 +168,20 @@ public class Tamil_calendar extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_tamil_calendar, container, false);
             english_mn = (TextView) rootView.findViewById(R.id.eng_mn);
             english_date = (TextView) rootView.findViewById(R.id.engdate);
-            english_day = (TextView) rootView.findViewById(R.id.day_week);
+            english_day = (TextView) rootView.findViewById(R.id.english_day);
             tamil_mn = (TextView) rootView.findViewById(R.id.tamil_month);
             tamil_date = (TextView) rootView.findViewById(R.id.tamil_date);
             tamil_day = (TextView) rootView.findViewById(R.id.tamil_day);
             daysevents = (TextView) rootView.findViewById(R.id.daysevents);
             nalaneram = (TextView) rootView.findViewById(R.id.nala_neram);
-            panchanganeram = (TextView) rootView.findViewById(R.id.one);
-            nightpangam = (TextView) rootView.findViewById(R.id.one2);
+            panchanganeram = (TextView) rootView.findViewById(R.id.rahu);
+            nightpangam = (TextView) rootView.findViewById(R.id.nigh_rahu);
             rasihet = (TextView) rootView.findViewById(R.id.rasiheat);
             rasipalan = (TextView) rootView.findViewById(R.id.rasi);
-            pan_aama = (TextView) rootView.findViewById(R.id.three);
-            pan_kulikai = (TextView) rootView.findViewById(R.id.two);
-            nigh_pan_aam = (TextView) rootView.findViewById(R.id.two3);
-            night_kuli = (TextView) rootView.findViewById(R.id.two2);
+            pan_aama = (TextView) rootView.findViewById(R.id.aam);
+            pan_kulikai = (TextView) rootView.findViewById(R.id.gulikai);
+            nigh_pan_aam = (TextView) rootView.findViewById(R.id.night_aam);
+           night_kuli = (TextView) rootView.findViewById(R.id.night_gulikai);
 
 
             box1 = (TextView) rootView.findViewById(R.id.aa);
@@ -246,7 +255,6 @@ public class Tamil_calendar extends ActionBarActivity {
             english_day.setText(weekDay);
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getActivity());
             databaseAccess.open();
-
             Cursor cursor = databaseAccess.getDayReacord(formattedDate);
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -254,9 +262,9 @@ public class Tamil_calendar extends ActionBarActivity {
                 daysevents.setText(val);
                 val=(cursor.getString(2));
                 nalaneram.setText(val);
-                val=(cursor.getString(3));
-                tamil_mn.setText(val);
                 val=(cursor.getString(6));
+                tamil_mn.setText(val);
+                val=(cursor.getString(3));
                 panchanganeram.setText(val);
                 val=(cursor.getString(5));
                 pan_kulikai.setText(val);
@@ -270,79 +278,53 @@ public class Tamil_calendar extends ActionBarActivity {
                 nigh_pan_aam.setText(val);
                 val=(cursor.getString(10));
                 rasipalan.setText(val);
-                val=(cursor.getString(3));
-                tamil_mn.setText(val);
                 cursor.moveToNext();
             }
-
-
-
-            /*tamil_mn.setText(databaseAccess.gettamilmonth(formattedDate));
-            panchanganeram.setText(databaseAccess.getraghu(formattedDate));
-            pan_kulikai.setText(databaseAccess.getpangulikai(formattedDate));
-            pan_aama.setText(databaseAccess.getpanaam(formattedDate));
-            nightpangam.setText(databaseAccess.getnightpan(formattedDate));
-            night_kuli.setText(databaseAccess.getgulikai(formattedDate));
-            nigh_pan_aam.setText(databaseAccess.getnightaam(formattedDate));
-            rasipalan.setText(databaseAccess.getrasi(formattedDate));*/
             databaseAccess.close();
             rasihet.setTypeface(faceAkshar);
-            rasihet.setText("இராசிபலன்");
+           rasihet.setText("இராசிபலன்");
 
-/*
-            DatabaseAccess2 databaseAccess2 = DatabaseAccess2.getInstance1(getActivity());
+
+       DatabaseAccess2 databaseAccess2 = DatabaseAccess2.getInstance1(getActivity());
             databaseAccess2.open();
 
-            Cursor cursor2 = databaseAccess2.getDayReacord2(formattedDate);
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                String  val=(cursor.getString(1));
-                tamil_date.setText(val);
-                val=(cursor2.getString(2));
-                box1.setText(val);
-                val=(cursor2.getString(3));
-                box2.setText(val);
-                val=(cursor2.getString(6));
-                box3.setText(val);
-                val=(cursor2.getString(5));
-                box4.setText(val);
-                val=(cursor2.getString(4));
-                box5.setText(val);
-                val=(cursor2.getString(7));
-                box7.setText(val);
-                val=(cursor2.getString(8));
-                box8.setText(val);
-                val=(cursor2.getString(9));
-                box9.setText(val);
-                val=(cursor2.getString(10));
-                box10.setText(val);
-                val=(cursor2.getString(11));
-                box12.setText(val);
-                val=(cursor2.getString(12));
-                box12.setText(val);
-                val=(cursor2.getString(13));
-                box13.setText(val);
+            //tamil_date.setText(databaseAccess2.getbox13(formattedDate));
+            Cursor cursoras=databaseAccess2.getDayReacordas(formattedDate);
+            cursoras.moveToNext();
+            while (!cursoras.isAfterLast())
+            {
+                String as=(cursoras.getString(1));
+                tamil_date.setText(as);
+                as=(cursoras.getString(2));
+                box1.setText(as);
+                as=(cursoras.getString(3));
+                box2.setText(as);
+                as=(cursoras.getString(3));
+                box3.setText(as);
+                as=(cursoras.getString(4));
+                box4.setText(as);
+                as=(cursoras.getString(5));
+                box5.setText(as);
+                as=(cursoras.getString(6));
+                box6.setText(as);
+                as=(cursoras.getString(7));
+                box7.setText(as);
+                as=(cursoras.getString(9));
+                box8.setText(as);
+                as=(cursoras.getString(10));
+                box9.setText(as);
+                as=(cursoras.getString(11));
+                box10.setText(as);
+                as=(cursoras.getString(12));
+                box11.setText(as);
+                as=(cursoras.getString(13));
+                box12.setText(as);
+                as=(cursoras.getString(14));
+                box13.setText(as);
+                cursoras.moveToNext();
+            }
+            databaseAccess2.close();
 
-
-                cursor.moveToNext();
-            }*//*
-            tamil_date.setText(databaseAccess2.gettamildat(formattedDate));
-            box1.setText(databaseAccess2.getbox1(formattedDate));
-            box2.setText(databaseAccess2.getbox2(formattedDate));
-            box3.setText(databaseAccess2.getbox3(formattedDate));
-            box4.setText(databaseAccess2.getbox4(formattedDate));
-            box5.setText(databaseAccess2.getbox5(formattedDate));
-            box6.setText(databaseAccess2.getbox6(formattedDate));
-            box7.setText(databaseAccess2.getbox7(formattedDate));
-            box8.setText(databaseAccess2.getbox8(formattedDate));
-            box9.setText(databaseAccess2.getbox9(formattedDate));
-            box10.setText(databaseAccess2.getbox10(formattedDate));
-            box11.setText(databaseAccess2.getbox11(formattedDate));
-            box12.setText(databaseAccess2.getbox12(formattedDate));
-            box13.setText(databaseAccess2.getbox13(formattedDate));*//*
-
-
-            databaseAccess2.close();*/
             return rootView;
         }
 
@@ -386,4 +368,6 @@ public class Tamil_calendar extends ActionBarActivity {
             return null;*/
         }
     }
+
 }
+

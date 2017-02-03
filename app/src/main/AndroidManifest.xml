@@ -4,11 +4,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo"
-
+        android:icon="@drawable/feature"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.cviac.calendar.MainActivity"
+            android:name=".Splash"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,11 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.cviac.calendar.Assert_data" />
+        <activity android:name=".Assert_data" />
         <activity
-            android:name="com.cviac.calendar.Tamil_calendar"
-            android:label="@string/title_activity_tamil_calendar"
-            ></activity>
+            android:name=".Daily_calendar"
+            android:label="@string/title_activity_tamil_calendar" />
+        <activity
+            android:name=".Monthly"
+            android:label="@string/title_activity_monthly"></activity>
     </application>
 
 </manifest>
