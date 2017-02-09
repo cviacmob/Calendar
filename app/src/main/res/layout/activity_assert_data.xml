@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.cviac.externaldatabasedemo.com.javahelps.calendar.Assert_data">
+    tools:context="com.cviac.calendar.com.javahelps.calendar.Assert_data">
 
     <TextView
         android:text="TextView"

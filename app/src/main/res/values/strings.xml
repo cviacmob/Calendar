@@ -7,4 +7,26 @@
     <string name="title_activity_tamil_calendar">நாள்காட்டி</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_monthly">Monthly</string>
+    <string name="hello">Open calendar</string>
+
+
+    <color name="text_color">#31D1F1</color>
+    <color name="white">#ffffff</color>
+    <string name="open">Open</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_swipe_month">Swipe_month</string>
+    <string name="title_activity_monthly_swip">Monthly_swip</string>
+    <string name="title_activity_monthly_swipe">Monthly_swipe</string>
+    <string name="title_activity_events">Events</string>
+    <string name="current_date">June, 2016</string>
+    <string name="add_event">ADD CALENDAR EVENT</string>
+    <string name="sun">SUN</string>
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thu">THU</string>
+    <string name="fri">FRI</string>
+    <string name="sat">SAT</string>
+    <string name="last_date">30</string>
+
 </resources>

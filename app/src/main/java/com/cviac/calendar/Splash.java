@@ -30,12 +30,13 @@ public class Splash extends ActionBarActivity {
        ImageView im = (ImageView) findViewById(R.id.spimage);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        ShamsiCalleder dd =new ShamsiCalleder();
 
         Thread background = new Thread() {
             public void run() {
                 try {
                     sleep(2 * 1000);
-                    Intent i = new Intent(getBaseContext(),Daily_calendar.class);
+                    Intent i = new Intent(getBaseContext(),MyCalendarActivity.class);
                     startActivity(i);
                     finish();
 

@@ -1,4 +1,4 @@
-package com.cviac.externaldatabasedemo;
+package com.cviac.calendar;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

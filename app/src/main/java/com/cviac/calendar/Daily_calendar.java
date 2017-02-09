@@ -21,8 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
+import android.widget.*;
 
 
 import java.text.SimpleDateFormat;
@@ -60,20 +59,12 @@ public class Daily_calendar extends ActionBarActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 int ab =position;
-                Calendar c = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                formatted = df.format(c.getTime());
-               // int a = getArguments().getInt(ARG_SECTION_NUMBER);
 
-                int b = ab - 1;
-                c.add(Calendar.DATE, b);
-                formatted = df.format(c.getTime());
-
-                Log.v("NEXT DATE : ", formatted);
 
 
 
@@ -109,15 +100,19 @@ public class Daily_calendar extends ActionBarActivity {
         int id = item.getItemId();
         Intent in;
 
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
-            return true;
+            Toast.makeText(this, "Refresh selected", Toast.LENGTH_SHORT).show();
         }
         if(id==R.id.action){
-            in=new Intent(Daily_calendar.this,Monthly.class);
+
+           in=new Intent(Daily_calendar.this,MyCalendarActivity.class);
             startActivity(in);
         }
+
+
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -357,7 +352,7 @@ public class Daily_calendar extends ActionBarActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return "object" + (position + 100);
-            /*switch (position) {
+         /*   switch (position) {
                 case 0:
                     return "SECTION 1";
                 case 1:

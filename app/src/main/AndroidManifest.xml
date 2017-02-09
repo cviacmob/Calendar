@@ -19,9 +19,12 @@
         <activity
             android:name=".Daily_calendar"
             android:label="@string/title_activity_tamil_calendar" />
+        <activity android:name=".MyCalendarActivity" />
         <activity
-            android:name=".Monthly"
-            android:label="@string/title_activity_monthly"></activity>
+            android:name=".Monthly_swipe"
+            android:label="@string/title_activity_monthly_swipe" />
+        <activity android:name=".Calendar_event" />
+        <activity android:name=".Gridview_tamil"></activity>
     </application>
 
 </manifest>
