@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/lightgray"
     android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/buttonlayout"
@@ -42,37 +45,87 @@
             android:src="@drawable/calendar_right_arrow_selector" >
         </ImageView>
 
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/selectedDayMonthYear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/calendar_top_header"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" >
-    </Button>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/buttonlayout"
+        android:id="@+id/ll"
         android:layout_gravity="center" >
 
-        <ImageView
-            android:id="@+id/calendarheader"
-            android:layout_width="fill_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="13dp"
             android:layout_gravity="center"
-            android:src="@drawable/calendar_days" >
-        </ImageView>
+            android:paddingLeft="6dp"
+            android:textColor="#ee2c2c"
+
+
+            android:id="@+id/s1"
+            android:text="ஞாயிறு"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textColor="#4169e1"
+            android:layout_gravity="center"
+            android:paddingLeft="6dp"
+
+            android:text="திங்க "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="6dp"
+            android:layout_gravity="center"
+            android:textColor="#4169e1"
+            android:textSize="13dp"
+            android:text="செய்வா"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:layout_gravity="center"
+            android:textColor="#4169e1"
+            android:paddingLeft="6dp"
+            android:text=" புதன் "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:layout_gravity="center"
+            android:textColor="#4169e1"
+            android:paddingLeft="6dp"
+            android:text="வியாழ"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:layout_gravity="center"
+            android:textColor="#4169e1"
+            android:paddingLeft="6dp"
+            android:text="வெள்ளி"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:layout_gravity="center"
+            android:textColor="#4169e1"
+            android:paddingLeft="6dp"
+            android:text=" சனி "/>
     </LinearLayout>
 
     <GridView
         android:id="@+id/calendar"
+        android:layout_below="@+id/ll"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:numColumns="7" >
     </GridView>
 
-</LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

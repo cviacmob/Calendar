@@ -24,6 +24,8 @@ import android.view.ViewGroup;
 import android.widget.*;
 
 
+import com.cviac.calendar.datamodel.MyDataHolder;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -276,8 +278,14 @@ public class Daily_calendar extends ActionBarActivity {
                 cursor.moveToNext();
             }
             databaseAccess.close();
-            rasihet.setTypeface(faceAkshar);
+           rasihet.setTypeface(faceAkshar);
            rasihet.setText("இராசிபலன்");
+            MyDataHolder clicking=new MyDataHolder();
+            String clickingdate= clicking.getDates();
+           // rasihet.setText(clicking.getDates());
+
+
+
 
 
        DatabaseAccess2 databaseAccess2 = DatabaseAccess2.getInstance1(getActivity());

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
@@ -24,6 +25,8 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.cviac.calendar.datamodel.MyDataHolder;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -43,7 +46,7 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 	private static final String tag = "MyCalendarActivity";
 
 	private TextView currentMonth;
-	private Button selectedDayMonthYearButton,addeve;
+	//private Button selectedDayMonthYearButton,addeve;
 	private ImageView prevMonth;
 	private ImageView nextMonth;
 	private GridView calendarView;
@@ -74,9 +77,9 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 		Log.d(tag, "Calendar Instance:= " + "Month: " + month + " " + "Year: "
 				+ year);
 
-		selectedDayMonthYearButton = (Button) this
-				.findViewById(R.id.selectedDayMonthYear);
-		selectedDayMonthYearButton.setText("Selected: ");
+		//selectedDayMonthYearButton = (Button) this
+				//.findViewById(R.id.selectedDayMonthYear);
+		//selectedDayMonthYearButton.setText("Selected: ");
 
 		prevMonth = (ImageView) this.findViewById(R.id.prevMonth);
 		prevMonth.setOnClickListener(this);
@@ -95,6 +98,7 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 				R.id.calendar_day_gridcell, month, year,month1,year1);
 		adapter.notifyDataSetChanged();
 		calendarView.setAdapter(adapter);
+
 	}
 
 	/**
@@ -146,20 +150,22 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 	}
 
 	// Inner Class
-	public class GridCellAdapter extends BaseAdapter implements OnClickListener {
+
+	public class GridCellAdapter extends BaseAdapter implements View.OnClickListener {
 		private static final String tag = "GridCellAdapter";
+
 		private final Context _context;
 
 		private final List<String> list;
-		private final List<String>tamil;
+		private final List<String> tamil;
 		private static final int DAY_OFFSET = 1;
-		private final String[] weekdays = new String[] { "Sun", "Mon", "Tue",
-				"Wed", "Thu", "Fri", "Sat" };
-		private final String[] months = { "January", "February", "March",
+		private final String[] weekdays = new String[]{"Sun", "Mon", "Tue",
+				"Wed", "Thu", "Fri", "Sat"};
+		private final String[] months = {"January", "February", "March",
 				"April", "May", "June", "July", "August", "September",
-				"October", "November", "December" };
-		private final int[] daysOfMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30,
-				31, 30, 31 };
+				"October", "November", "December"};
+		private final int[] daysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30,
+				31, 30, 31};
 		private int daysInMonth;
 		private int monthstart;
 		private int monthend;
@@ -177,7 +183,7 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 			super();
 			this._context = context;
 			this.list = new ArrayList<String>();
-			this.tamil=new ArrayList<String>();
+			this.tamil = new ArrayList<String>();
 			Log.d(tag, "==> Passed in Date FOR Month: " + month + " "
 					+ "Year: " + year);
 			Calendar calendar = Calendar.getInstance();
@@ -189,11 +195,14 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 
 			// Print Month
 			printMonth(month, year);
-			printtamil(month,year);
+			printtamil(month, year);
 
 			// Find Number of Events
 			eventsPerMonthMap = findNumberOfEventsPerMonth(year, month);
 		}
+
+
+
 
 		private void printtamil(int mm, int yy) {
 			Log.d(tag, "==> printMonth: mm: " + mm + " " + "yy: " + yy);
@@ -271,7 +280,7 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 				tamil.add(String.valueOf((daysInPrevMonth - trailingSpaces + DAY_OFFSET) + j) + "-GREY" + "-"
 						+ getMonthAsString(prevMonth)
 						+ "-"
-						+ prevYear+ String.valueOf(j));
+						+ prevYear + String.valueOf(j));
 			}
 
 			// Current Month Days
@@ -279,7 +288,6 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 				Log.d(currentMonthName, String.valueOf(j) + " " + getMonthAsString(currentMonth) + " " + yy);
 				if (j == getCurrentDayOfMonth()) {
 					tamil.add(String.valueOf(j) + "-BLUE" + "-" + getMonthAsString(currentMonth) + "-" + yy);
-
 
 
 				} else {
@@ -293,7 +301,7 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 			for (int j = 0; j < list.size() % 7; j++) {
 				Log.d(tag, "NEXT MONTH:= " + getMonthAsString(nextMonth));
 				list.add(String.valueOf(j + 1) + "-GREY" + "-"
-						+ getMonthAsString(nextMonth) + "-" + nextYear+String.valueOf(j));
+						+ getMonthAsString(nextMonth) + "-" + nextYear + String.valueOf(j));
 
 			}
 
@@ -323,7 +331,7 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 
 		/**
 		 * Prints Month
-		 * 
+		 *
 		 * @param mm
 		 * @param yy
 		 */
@@ -398,8 +406,8 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 								+ getMonthAsString(prevMonth)
 								+ " "
 								+ String.valueOf((daysInPrevMonth
-										- trailingSpaces + DAY_OFFSET)
-										+ i));
+								- trailingSpaces + DAY_OFFSET)
+								+ i));
 				list.add(String.valueOf((daysInPrevMonth - trailingSpaces + DAY_OFFSET) + i) + "-WHITE" + "-"
 						+ getMonthAsString(prevMonth)
 						+ "-"
@@ -411,78 +419,63 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 					"April", "May", "June", "July", "August", "September",
 					"October", "November", "December" };*/
 
-String mon=getMonthAsString(currentMonth);
+			String mon = getMonthAsString(currentMonth);
 
-			int aa=0;
-			int bb=0;
-			if(mon=="January")
-			{
-				aa=17;
-				bb=29;
-			}
-
-			if(mon=="February")
-			{
-				aa=19;
-				bb=30;
-			}
-			if(mon=="March")
-			{
-				aa=17;
-				bb=29;
-			}
-			if(mon=="April")
-			{
-				aa=19;
-				bb=31;
-			}
-			if(mon=="May")
-			{
-				aa=18;
-				bb=30;
-			}
-			if(mon=="June")
-			{
-				aa=18;
-				bb=31;
-			}
-			if(mon=="July")
-			{
-				aa=17;
-				bb=32;
-			}
-			if(mon=="August")
-			{
-				aa=16;
-				bb=31;
+			int aa = 0;
+			int bb = 0;
+			if (mon == "January") {
+				aa = 17;
+				bb = 29;
 			}
 
-			if(mon=="September")
-			{
-				aa=16;
-				bb=31;
+			if (mon == "February") {
+				aa = 19;
+				bb = 30;
 			}
-			if(mon=="October")
-			{
-				aa=15;
-				bb=31;
+			if (mon == "March") {
+				aa = 17;
+				bb = 29;
 			}
-			if(mon=="November")
-			{
-				aa=15;
-				bb=30;
+			if (mon == "April") {
+				aa = 19;
+				bb = 31;
 			}
-			if(mon=="December")
-			{
-				aa=15;
-				bb=29;
+			if (mon == "May") {
+				aa = 18;
+				bb = 30;
+			}
+			if (mon == "June") {
+				aa = 18;
+				bb = 31;
+			}
+			if (mon == "July") {
+				aa = 17;
+				bb = 32;
+			}
+			if (mon == "August") {
+				aa = 16;
+				bb = 31;
+			}
+
+			if (mon == "September") {
+				aa = 16;
+				bb = 31;
+			}
+			if (mon == "October") {
+				aa = 15;
+				bb = 31;
+			}
+			if (mon == "November") {
+				aa = 15;
+				bb = 30;
+			}
+			if (mon == "December") {
+				aa = 15;
+				bb = 29;
 			}
 
 
-
-
-
-			for (int i = aa; i <= daysInMonth+aa; i++) {
+			for (int i = aa; i <= daysInMonth + aa; i++) {
 
 				Log.d(currentMonthName, String.valueOf(i) + " " + getMonthAsString(currentMonth) + " " + yy);
 				if (i == getCurrentDayOfMonth()) {
@@ -521,7 +514,7 @@ String mon=getMonthAsString(currentMonth);
 		 * ALL entries from a SQLite database for that month. Iterate over the
 		 * List of All entries, and get the dateCreated, which is converted into
 		 * day.
-		 * 
+		 *
 		 * @param year
 		 * @param month
 		 * @return
@@ -561,11 +554,11 @@ String mon=getMonthAsString(currentMonth);
 			String themonth = day_color[2];
 			String theyear = day_color[3];
 
-			String[]tom_colour=tamil.get(position).split("-");
+			String[] tom_colour = tamil.get(position).split("-");
 
-			String tomorrow=tom_colour[0];
-			String tom_month=tom_colour[2];
-			String tom_year=tom_colour[3];
+			String tomorrow = tom_colour[0];
+			String tom_month = tom_colour[2];
+			String tom_year = tom_colour[3];
 			num_events_per_day = (TextView) row
 					.findViewById(R.id.num_events_per_day);
 
@@ -580,19 +573,23 @@ String mon=getMonthAsString(currentMonth);
 
 			String text1 = day_color[0];
 			String text2 = tom_colour[0];
+			Spannable word = new SpannableString(text2);
+			word.setSpan(new ForegroundColorSpan(Color.parseColor("#FF00FF")), 0, word.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 
-
+			//Spannable word1 = new SpannableString(text2);
+			//word1.setSpan(new ForegroundColorSpan(Color.YELLOW), 0, word1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 
 			SpannableString span1 = new SpannableString(text1);
-			span1.setSpan(new AbsoluteSizeSpan(60), 0, text1.length(), SPAN_INCLUSIVE_INCLUSIVE);
+			span1.setSpan(new AbsoluteSizeSpan(40), 0, text1.length(), SPAN_INCLUSIVE_INCLUSIVE);
+			//span1.setSpan(new ForegroundColorSpan(Color.BLUE), 0, 6, 0);
 
-			SpannableString span2 = new SpannableString(text2);
-			span2.setSpan(new AbsoluteSizeSpan(40), 0, text2.length(), SPAN_INCLUSIVE_INCLUSIVE);
+			SpannableString span2 = new SpannableString(word);
+			span2.setSpan(new AbsoluteSizeSpan(20), 0, word.length(), SPAN_INCLUSIVE_INCLUSIVE);
 
 // let's put both spans together with a separator and all
-			CharSequence finalText = TextUtils.concat(span1, " ", span2);
+			CharSequence finalText = TextUtils.concat(span2, " ", span1);
 
 			// Set the Day GridCell
 			gridcell.setText(finalText);
@@ -602,28 +599,55 @@ String mon=getMonthAsString(currentMonth);
 			//TextView tv= (TextView) findViewById(R.id.textview);
 
 			num_events_per_day.setText(tomorrow);
+
+
 			gridcell.setTag(theday + "-" + themonth + "-" + theyear);
 			Log.d(tag, "Setting GridCell " + theday + "-" + themonth + "-"
 					+ theyear);
 
 			if (day_color[1].equals("GREY")) {
-				gridcell.setTextColor(Color.parseColor("#808080"));
+				gridcell.setTextColor(Color.parseColor("#155ED4"));
 
 			}
 			if (day_color[1].equals("WHITE")) {
 				gridcell.setTextColor(Color.parseColor("#ffffff"));
 
 			}
-			if (day_color[1].equals("BLUE")) {
-				gridcell.setTextColor(Color.parseColor("#00BFFF"));
+		if (tom_colour[1].equals("lavendar")){
+			gridcell.setTextColor(Color.parseColor("#E6E6FA"));
+		}
+			if (tom_colour[1].equals("BLUE")) {
+				gridcell.setTextColor(Color.parseColor("#D42F15"));
 			}
 			return row;
 		}
 
+		public String date_month_year;
+
+
 		@Override
 		public void onClick(View view) {
-			String date_month_year = (String) view.getTag();
-			selectedDayMonthYearButton.setText("Selected: " + date_month_year);
+			date_month_year = (String) view.getTag();
+
+			MyDataHolder data=new MyDataHolder();
+			data.setDates(date_month_year);
+			/*String tomorrow=tom_colour[0];
+			String tom_month=tom_colour[2];
+			String tom_year=tom_colour[3];*/
+			///String date_month_year =text1;
+
+			//
+			//selectedDayMonthYearButton.setText("Selected: " + date_month_year);
+			/*Intent in=new Intent(MyCalendarActivity.this,Daily_calendar.class);
+			startAcitvity(in);*/
+
+
+
+			Intent in = new Intent(getActivity(), Daily_calendar.class);
+			startAcitvity(in);
+			finish();
+
+
 			Log.e("Selected date", date_month_year);
 			try {
 				Date parsedDate = dateFormatter.parse(date_month_year);
@@ -632,6 +656,15 @@ String mon=getMonthAsString(currentMonth);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+
+		}
+
+		private void startAcitvity(Intent in) {
+			return;
+		}
+
+		private Context getActivity() {
+			return getActivity();
 		}
 
 		public int getCurrentDayOfMonth() {
@@ -649,6 +682,8 @@ String mon=getMonthAsString(currentMonth);
 		public int getCurrentWeekDay() {
 			return currentWeekDay;
 		}
+
+
 	}
 
 

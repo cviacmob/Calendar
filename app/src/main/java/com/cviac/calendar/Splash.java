@@ -36,7 +36,7 @@ public class Splash extends ActionBarActivity {
             public void run() {
                 try {
                     sleep(2 * 1000);
-                    Intent i = new Intent(getBaseContext(),MyCalendarActivity.class);
+                    Intent i = new Intent(getBaseContext(),Daily_calendar.class);
                     startActivity(i);
                     finish();
 

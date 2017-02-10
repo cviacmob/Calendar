@@ -45,7 +45,7 @@ public class Monthly_swipe extends ActionBarActivity {
     private ImageView nextMonth;
     private GridView calendarView;
 
-    private MyCalendarActivity.GridCellAdapter adapter;
+
     private Calendar _calendar;
     @SuppressLint("NewApi")
     private int month, year;

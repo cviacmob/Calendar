@@ -83,8 +83,7 @@ public class DatabaseAccess2 {
 
 
 
-
-
+/*
     public String getbox12(String s) {
         String data = new String();
         Cursor cursor = database.rawQuery("SELECT * FROM astro WHERE date='"+s+"'", null);
@@ -107,7 +106,7 @@ public class DatabaseAccess2 {
         }
         cursor.close();
         return data;
-    }
+    }*/
 
     public Cursor getDayReacordas(String s) {
         String data = new String();
