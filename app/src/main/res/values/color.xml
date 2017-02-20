@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="actionbar_background">#f96e59</color>
-
     <color name="black">#000000</color>
     <color name="symptom_color_selected">#003366</color>
     <color name="reaction_color_selected">#003366</color>

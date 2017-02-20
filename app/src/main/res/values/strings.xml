@@ -28,5 +28,10 @@
     <string name="fri">FRI</string>
     <string name="sat">SAT</string>
     <string name="last_date">30</string>
+    <string name="title_activity_testswipe">Testswipe</string>
+    <string name="title_activity_tobbed">Tobbed</string>
+    <string name="title_activity_previous">Previous</string>
+    <string name="hint_mobile" />
+    <string name="content_text" />
 
 </resources>

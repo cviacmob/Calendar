@@ -5,13 +5,13 @@ package com.cviac.calendar.datamodel;
  */
 
 public class MyDataHolder {
-    public String getDates() {
-        return dates;
+    public String getMonthdate() {
+        return monthdate;
     }
 
-    public void setDates(String dates) {
-        this.dates = dates;
+    public void setMonthdate(String monthdate) {
+        this.monthdate = monthdate;
     }
 
-    private String dates;
+    private String monthdate;
 }

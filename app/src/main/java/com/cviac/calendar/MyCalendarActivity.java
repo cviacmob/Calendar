@@ -45,6 +45,9 @@ import static android.text.Spanned.SPAN_INCLUSIVE_INCLUSIVE;
 public class MyCalendarActivity extends Activity implements OnClickListener {
 	private static final String tag = "MyCalendarActivity";
 
+
+
+
 	private TextView currentMonth;
 	//private Button selectedDayMonthYearButton,addeve;
 	private ImageView prevMonth;
@@ -59,11 +62,14 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 	private final DateFormat dateFormatter = new DateFormat();
 	private static final String dateTemplate = "MMMM yyyy";
 
+	private String getdataes;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_calendar_view);
+
 
 
 
@@ -157,6 +163,9 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 		private final Context _context;
 
 		private final List<String> list;
+		private Daily_calendar INSTANCE;
+
+
 		private final List<String> tamil;
 		private static final int DAY_OFFSET = 1;
 		private final String[] weekdays = new String[]{"Sun", "Mon", "Tue",
@@ -176,6 +185,7 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 		private final HashMap<String, Integer> eventsPerMonthMap;
 		private final SimpleDateFormat dateFormatter = new SimpleDateFormat(
 				"dd-MMM-yyyy");
+		private String data;
 
 		// Days in Current Month
 		public GridCellAdapter(Context context, int calendar_day_gridcell, int i, int textViewResourceId,
@@ -200,7 +210,6 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 			// Find Number of Events
 			eventsPerMonthMap = findNumberOfEventsPerMonth(year, month);
 		}
-
 
 
 
@@ -625,12 +634,21 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 		public String date_month_year;
 
 
+		public void setData(String data) {
+			this.data = data;
+		}
+
+		public String getData() {
+			return data;
+		}
+
 		@Override
 		public void onClick(View view) {
 			date_month_year = (String) view.getTag();
 
-			MyDataHolder data=new MyDataHolder();
-			data.setDates(date_month_year);
+
+
+
 			/*String tomorrow=tom_colour[0];
 			String tom_month=tom_colour[2];
 			String tom_year=tom_colour[3];*/
@@ -641,11 +659,17 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 			/*Intent in=new Intent(MyCalendarActivity.this,Daily_calendar.class);
 			startAcitvity(in);*/
 
+			Intent in1 = new Intent(getActivity(), Daily_calendar.class);
 
+			in1.putExtra("image","hello");
+			startActivity(in1);
 
 			Intent in = new Intent(getActivity(), Daily_calendar.class);
 			startAcitvity(in);
 			finish();
+
+
+
 
 
 			Log.e("Selected date", date_month_year);
@@ -685,6 +709,7 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 
 
 	}
+
 
 
 }

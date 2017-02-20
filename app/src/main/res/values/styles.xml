@@ -9,6 +9,13 @@
         <item name="actionBarStyle">@style/MyActionBar</item>
     </style>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="android:background">@drawable/panna</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
     <!-- ActionBar styles -->
     <style name="MyActionBar"
         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">

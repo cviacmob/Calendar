@@ -1,19 +1,14 @@
 package com.cviac.calendar;
 
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,13 +16,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
-
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cviac.calendar.datamodel.MyDataHolder;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+
 
 public class Daily_calendar extends ActionBarActivity {
 
@@ -47,6 +45,10 @@ public class Daily_calendar extends ActionBarActivity {
      */
     private ViewPager mViewPager;
     String formatted;
+    int count=50;
+
+
+
 
 
     @Override
@@ -60,7 +62,15 @@ public class Daily_calendar extends ActionBarActivity {
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        if(mViewPager !=null) {
+
+            mViewPager.setAdapter(mSectionsPagerAdapter);
+            mViewPager.setCurrentItem(count);
+        }
+
+
+
+
 
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -138,11 +148,35 @@ public class Daily_calendar extends ActionBarActivity {
 
          * fragment.
          */
+
+
+        String datas;
+
+        int mm=2;
+        int yy=2017;
+        String current;
+        private static final String tag = "GridCellAdapter";
+        private static final int DAY_OFFSET = 1;
+        private final String[] weekdays = new String[]{"Sun", "Mon", "Tue",
+                "Wed", "Thu", "Fri", "Sat"};
+        private  List<String> list;
+        private int daysInMonth;
+        private int currentDayOfMonth;
+        private int currentWeekDay;
+        private final String[] months = {"January", "February", "March",
+                "April", "May", "June", "July", "August", "September",
+                "October", "November", "December"};
+        private final int[] daysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30,
+                31, 30, 31};
+
         TextView english_mn, english_date, english_day, tamil_mn, tamil_date, tamil_day, daysevents, nalaneram, panchanganeram, nightpangam,
                 rasihet, rasipalan, pan_kulikai, pan_aama, nigh_pan_aam, night_kuli;
         TextView box1, box2, box3, box4, box5, box6, box7, box8, box9, box10, box11, box12, box13;
         private static final String ARG_SECTION_NUMBER = "section_number";
         String formattedDate;
+        String data;
+        MyDataHolder holde=new MyDataHolder();
+
 
         public PlaceholderFragment() {
         }
@@ -162,6 +196,10 @@ public class Daily_calendar extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
+
+
+
             View rootView = inflater.inflate(R.layout.fragment_tamil_calendar, container, false);
             english_mn = (TextView) rootView.findViewById(R.id.eng_mn);
             english_date = (TextView) rootView.findViewById(R.id.engdate);
@@ -194,6 +232,20 @@ public class Daily_calendar extends ActionBarActivity {
             box11 = (TextView) rootView.findViewById(R.id.mm);
             box12 = (TextView) rootView.findViewById(R.id.nn);
             box13 = (TextView) rootView.findViewById(R.id.oo);
+          //  String Item = getActivity().getIntent().getExtras().getString("image");
+            Intent intent =getActivity(). getIntent();
+            if (null != intent) {
+                String mothlydata = intent.getStringExtra("image");
+
+                holde.setMonthdate(mothlydata);
+
+
+            }
+
+
+
+
+
 
             Typeface faceAkshar = Typeface.createFromAsset(getActivity().getAssets(), "akshar.ttf");
 
@@ -201,8 +253,9 @@ public class Daily_calendar extends ActionBarActivity {
             SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             formattedDate = df.format(c.getTime());
             int a = getArguments().getInt(ARG_SECTION_NUMBER);
+            int dd=50;
 
-            int b = a - 1;
+            int b = a -dd;
             c.add(Calendar.DATE, b);
             formattedDate = df.format(c.getTime());
             english_date.setText(formattedDate);
@@ -215,6 +268,10 @@ public class Daily_calendar extends ActionBarActivity {
             int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
             tamil_day.setTypeface(faceAkshar);
             String weekDay = "";
+
+            //rasihet.setText(dataes);
+           // tamil_date.setText(dataes);
+
 
 
             if (Calendar.MONDAY == dayOfWeek) {
@@ -249,7 +306,10 @@ public class Daily_calendar extends ActionBarActivity {
 
             // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
            // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));e
-            english_day.setText(weekDay);
+            
+            english_day.setText(holde.getMonthdate());
+
+
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getActivity());
             databaseAccess.open();
             Cursor cursor = databaseAccess.getDayReacord(formattedDate);
@@ -278,11 +338,10 @@ public class Daily_calendar extends ActionBarActivity {
                 cursor.moveToNext();
             }
             databaseAccess.close();
-           rasihet.setTypeface(faceAkshar);
+         rasihet.setTypeface(faceAkshar);
            rasihet.setText("இராசிபலன்");
-            MyDataHolder clicking=new MyDataHolder();
-            String clickingdate= clicking.getDates();
-           // rasihet.setText(clicking.getDates());
+
+           // rasihet.setText(Item);
 
 
 
@@ -296,9 +355,10 @@ public class Daily_calendar extends ActionBarActivity {
             cursoras.moveToNext();
             while (!cursoras.isAfterLast())
             {
-                String as=(cursoras.getString(1));
-                tamil_date.setText(as);
-                as=(cursoras.getString(2));
+               // String as=(cursoras.getString(1));
+               // tamil_date.setText(as);
+                String as=(cursoras.getString(2));
+                //as=(cursoras.getString(2));
                 box1.setText(as);
                 as=(cursoras.getString(3));
                 box2.setText(as);
@@ -328,10 +388,229 @@ public class Daily_calendar extends ActionBarActivity {
             }
             databaseAccess2.close();
 
+            Calendar calendar = Calendar.getInstance();
+            setCurrentDayOfMonth(calendar.get(Calendar.DAY_OF_MONTH));
+            setCurrentWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
+
+
+                Log.d(tag, "==> printMonth: mm: " + mm + " " + "yy: " + yy);
+                int trailingSpaces = 0;
+                int daysInPrevMonth = 0;
+                int prevMonth = 0;
+                int prevYear = 0;
+                int nextMonth = 0;
+                int nextYear = 0;
+
+                int currentMonth = mm - 1;
+                String currentMonthName = getMonthAsString(currentMonth);
+
+                daysInMonth = getNumberOfDaysOfMonth(currentMonth);
+
+                Log.d(tag, "Current Month: " + " " + currentMonthName + " having "
+                        + daysInMonth + " days.");
+
+                GregorianCalendar cal = new GregorianCalendar(yy, currentMonth, 1);
+                Log.d(tag, "Gregorian Calendar:= " + cal.getTime().toString());
+
+                if (currentMonth == 11) {
+                    prevMonth = currentMonth - 1;
+                    daysInPrevMonth = getNumberOfDaysOfMonth(prevMonth);
+                    nextMonth = 0;
+                    prevYear = yy;
+                    nextYear = yy + 1;
+                    Log.d(tag, "*->PrevYear: " + prevYear + " PrevMonth:"
+                            + prevMonth + " NextMonth: " + nextMonth
+                            + " NextYear: " + nextYear);
+                } else if (currentMonth == 0) {
+                    prevMonth = 11;
+                    prevYear = yy - 1;
+                    nextYear = yy;
+                    daysInPrevMonth = getNumberOfDaysOfMonth(prevMonth);
+                    nextMonth = 1;
+                    Log.d(tag, "**--> PrevYear: " + prevYear + " PrevMonth:"
+                            + prevMonth + " NextMonth: " + nextMonth
+                            + " NextYear: " + nextYear);
+                } else {
+                    prevMonth = currentMonth - 1;
+                    nextMonth = currentMonth + 1;
+                    nextYear = yy;
+                    prevYear = yy;
+                    daysInPrevMonth = getNumberOfDaysOfMonth(prevMonth);
+                    Log.d(tag, "***---> PrevYear: " + prevYear + " PrevMonth:"
+                            + prevMonth + " NextMonth: " + nextMonth
+                            + " NextYear: " + nextYear);
+                }
+
+                int currentWeekDay = cal.get(Calendar.DAY_OF_WEEK) - 1;
+                trailingSpaces = currentWeekDay;
+
+                Log.d(tag, "Week Day:" + currentWeekDay + " is "
+                        + getWeekDayAsString(currentWeekDay));
+                Log.d(tag, "No. Trailing space to Add: " + trailingSpaces);
+                Log.d(tag, "No. of Days in Previous Month: " + daysInPrevMonth);
+
+                if (cal.isLeapYear(cal.get(Calendar.YEAR)))
+                    if (mm == 2)
+                        ++daysInMonth;
+                    else if (mm == 3)
+                        ++daysInPrevMonth;
+
+                // Trailing Month days
+                for (int i = 0; i < trailingSpaces; i++) {
+                    Log.d(tag,
+                            "PREV MONTH:= "
+                                    + prevMonth
+                                    + " => "
+                                    + getMonthAsString(prevMonth)
+                                    + " "
+                                    + String.valueOf((daysInPrevMonth
+                                    - trailingSpaces + DAY_OFFSET)
+                                    + i));
+
+               /* list.add(String.valueOf((daysInPrevMonth - trailingSpaces + DAY_OFFSET) + i) + "-WHITE" + "-"
+                        + getMonthAsString(prevMonth)
+                        + "-"
+                        + prevYear);*/
+                }
+
+                // Current Month Days
+			/*private final String[] months = { "January", "February", "March",
+					"April", "May", "June", "July", "August", "September",
+					"October", "November", "December" };*/
+
+                String mon = getMonthAsString(currentMonth);
+
+                int aa = 0;
+                int bb = 0;
+                if (mon == "January") {
+                    aa = 17;
+                    bb = 29;
+                }
+
+                if (mon == "February") {
+                    aa = 19;
+                    bb = 30;
+                }
+                if (mon == "March") {
+                    aa = 17;
+                    bb = 29;
+                }
+                if (mon == "April") {
+                    aa = 19;
+                    bb = 31;
+                }
+                if (mon == "May") {
+                    aa = 18;
+                    bb = 30;
+                }
+                if (mon == "June") {
+                    aa = 18;
+                    bb = 31;
+                }
+                if (mon == "July") {
+                    aa = 17;
+                    bb = 32;
+                }
+                if (mon == "August") {
+                    aa = 16;
+                    bb = 31;
+                }
+
+                if (mon == "September") {
+                    aa = 16;
+                    bb = 31;
+                }
+                if (mon == "October") {
+                    aa = 15;
+                    bb = 31;
+                }
+                if (mon == "November") {
+                    aa = 15;
+                    bb = 30;
+                }
+                if (mon == "December") {
+                    aa = 15;
+                    bb = 29;
+                }
+
+
+                for (int i = aa; i <= daysInMonth + aa; i++) {
+
+                    Log.d(currentMonthName, String.valueOf(i) + " " + getMonthAsString(currentMonth) + " " + yy);
+                    current=String.valueOf(i);
+                   // tamil_date.setText(current);
+                    if (i == getCurrentDayOfMonth()) {
+                        // list.add(String.valueOf(i) + "-BLUE" + "-" + getMonthAsString(currentMonth) + "-" + yy);
+                        current=String.valueOf(i) + "-BLUE" + "-" + getMonthAsString(currentMonth) + "-" + yy;
+                        //tamil_date.setText(current);
+
+                    } else {
+                        int ab = i;
+                        int ac = 0;
+                        int ad = bb;
+
+
+                        if (ab > ad) {
+
+                            ac = ab - ad;
+                        } else {
+                            ac = ab;
+
+
+                        }
+
+                        //tamil_date.setText(cc);
+                        // list.add(String.valueOf(ac) + "-GREY" + "-" + getMonthAsString(currentMonth) + "-" + yy + String.valueOf(i));
+
+
+                    }
+                }
+
+
+                // Leading Month days
+           /*     for (int i = 0; i < list.size() % 7; i++) {
+                    Log.d(tag, "NEXT MONTH:= " + getMonthAsString(nextMonth));
+                    // list.add(String.valueOf(i + 1) + "-GREY" + "-" + getMonthAsString(nextMonth) + "-" + nextYear);
+
+
+                }*/
+
+
+
+
+
             return rootView;
         }
 
+        private void setCurrentWeekDay(int i) {
+            this.currentWeekDay = i;
+        }
 
+
+        private String getWeekDayAsString(int i) {
+            return weekdays[i];
+        }
+
+        private int getNumberOfDaysOfMonth(int i) {
+
+            return daysOfMonth[i];
+        }
+
+        private String getMonthAsString(int i) {
+            return months[i];
+        }
+
+
+        public int getCurrentDayOfMonth() {
+            return currentDayOfMonth;
+        }
+
+        public void setCurrentDayOfMonth(int currentDayOfMonth) {
+            this.currentDayOfMonth = currentDayOfMonth;
+        }
+        public int getCurrentWeekDay() {
+            return currentWeekDay;
+        }
     }
 
     /**
@@ -348,7 +627,7 @@ public class Daily_calendar extends ActionBarActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position );
         }
 
         @Override
