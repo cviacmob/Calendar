@@ -1,273 +1,158 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAF9FB"
-   >
+    android:padding="20dp">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_Email"
+
+        android:layout_below="@+id/input_date"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/email"
+            android:hint="Email"
+            android:layout_below="@+id/input_phone"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_phone"
         android:layout_marginTop="10dp"
-        android:orientation="vertical"
 
-        android:id="@+id/r1"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp">
-
-
-
-
-        <RelativeLayout
+        android:layout_below="@+id/input_Email"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/phone"
+            android:hint="phone"
+            android:layout_below="@+id/reg"
+            android:layout_alignRight="@+id/reg"
+            android:layout_alignEnd="@+id/reg"
+            android:layout_marginTop="85dp" />
 
-            android:id="@+id/r3"
-            android:layout_marginTop="10dp"
+    </android.support.design.widget.TextInputLayout>
 
-
-            android:layout_below="@+id/rr2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layouhht_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/imageViewdate"
-                android:layout_toStartOf="@+id/imageViewdate">
-
-                <EditText
-                    android:id="@+id/date"
-                    android:layout_width="173dp"
-                    android:textColor="#ffffff"
-                    android:layout_height="wrap_content"
-                    android:hint="Date of Birth"
-                    android:layout_marginTop="41dp"
-                    android:layout_below="@+id/input_layout_name"
-                    android:layout_alignLeft="@+id/input_mobile"
-                    android:layout_alignStart="@+id/input_mobile" />
-
-            </android.support.design.widget.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Gender"
+        android:textSize="18dp"
 
 
-        </RelativeLayout>
+        android:padding="1dp"
+        android:layout_marginTop="20dp"
+        android:text="Gender"
+        android:layout_below="@+id/input_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <RelativeLayout
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:id="@+id/register"
+        android:background="#f96e59"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/input_Email"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="113dp" />
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Radio_selection"
+        android:text="Female"
+        android:orientation="horizontal"
+        android:layout_alignTop="@+id/Gender"
+        android:layout_toRightOf="@+id/Gender"
+        android:layout_toEndOf="@+id/Gender"
+        android:layout_marginLeft="110dp"
+        android:layout_marginStart="110dp">
+
+        <RadioButton
+            android:id="@+id/radioMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/r4"
-            android:layout_below="@+id/r3">
+            android:text="Male"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/radioMale"
+            android:text="Female" />
 
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
-                <EditText
-                    android:id="@+id/time"
-                    android:layout_width="261dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Time"
-                    android:layout_marginTop="41dp"
-                    android:layout_below="@+id/input_layout_name"
-                    android:layout_alignLeft="@+id/input_mobile"
-                    android:layout_alignStart="@+id/input_mobile"
-                    android:layout_weight="1" />
+    </RadioGroup>
 
-            </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_date"
+        android:layout_marginTop="10dp"
 
-        </RelativeLayout>
-        <RelativeLayout
+        android:layout_below="@+id/Gender"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/imageView"
+        android:layout_toStartOf="@+id/imageView">
+
+        <EditText
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/date"
+            android:hint="Date Of Birth"
+            android:layout_alignBaseline="@+id/email"
+            android:layout_alignBottom="@+id/email"
+            android:layout_alignLeft="@+id/radioGroup"
+            android:layout_alignStart="@+id/radioGroup" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_name"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:hint="Name" />
+    </android.support.design.widget.TextInputLayout>
 
-            android:layout_marginTop="10dp"
-            android:id="@+id/r5"
-            android:layout_below="@id/r4">
-
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:text="City of Birth"
-                android:id="@+id/city_birth"
-
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/r6"
-            android:layout_below="@id/r5">
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_mail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
-
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:layout_marginTop="41dp"
-                    android:layout_below="@+id/input_layout_name"
-                    android:layout_alignLeft="@+id/input_mobile"
-                    android:layout_alignStart="@+id/input_mobile"
-                    android:layout_weight="1" />
-            </android.support.design.widget.TextInputLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/calendari"
+        android:id="@+id/date_pick"
+        android:layout_above="@+id/input_Email"
+        android:layout_alignLeft="@+id/register"
+        android:layout_alignStart="@+id/register" />
 
 
-        </RelativeLayout>
-
-
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Name"
-                android:layout_marginTop="41dp"
-                android:layout_below="@+id/input_layout_name"
-                android:layout_alignLeft="@+id/input_mobile"
-                android:layout_alignStart="@+id/input_mobile"
-                android:layout_weight="1" />
-        </android.support.design.widget.TextInputLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:id="@+id/rr2"
-            android:layout_below="@+id/input_layout_email"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <RadioButton
-                android:text="Male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/selection_male"
-                android:layout_alignBottom="@+id/textView4" />
-
-            <RadioButton
-                android:text="Female"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/selection_female"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="26dp"
-                android:layout_marginEnd="26dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gender"
-                android:textSize="20dp"
-                android:layout_marginLeft="4dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/r6">
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
-
-                <EditText
-                    android:id="@+id/phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Phone Number"
-                    android:layout_marginTop="41dp"
-
-                    android:layout_below="@+id/input_layout_name"
-                    android:layout_alignLeft="@+id/input_mobile"
-                    android:layout_alignStart="@+id/input_mobile"
-                    android:layout_weight="1" />
-            </android.support.design.widget.TextInputLayout>
-
-        </RelativeLayout>
-
-        <Button
-            android:text="Submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="73dp"
-            android:layout_marginEnd="73dp"
-            android:textColor="#ffffff"
-            android:id="@+id/submit"
-            android:background="#f96e59"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="22dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/calendari"
-            android:layout_marginRight="26dp"
-            android:background="#FAF9FB"
-            android:id="@+id/date_pick"
-            android:layout_marginEnd="26dp"
-            android:layout_above="@+id/r4"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/r3" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/clockcolour"
-            android:id="@+id/time_pick"
-            android:layout_alignTop="@+id/r4"
-            android:layout_alignRight="@+id/date_pick"
-            android:layout_alignEnd="@+id/date_pick"
-            android:layout_above="@+id/r5"
-            android:layout_alignLeft="@+id/date_pick"
-            android:layout_alignStart="@+id/date_pick" />
-
-
-    </RelativeLayout>
-
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

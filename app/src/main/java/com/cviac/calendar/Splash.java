@@ -25,7 +25,7 @@ public class Splash extends Activity {
             public void run() {
                 try {
                     sleep(2 * 1000);
-                    Intent i = new Intent(getBaseContext(),Registration.class);
+                    Intent i = new Intent(Splash.this,Assert_data.class);
                     startActivity(i);
                     finish();
 

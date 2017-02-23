@@ -6,10 +6,11 @@
         android:allowBackup="true"
         android:icon="@drawable/panna"
         android:theme="@style/AppTheme">
+        <uses-permission android:name="android.permission.INTERNET"/>
         <activity
             android:name=".Splash"
-            android:theme="@style/SplashTheme"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,11 +22,20 @@
             android:name=".Daily_calendar"
             android:label="@string/title_activity_tamil_calendar" />
         <activity android:name=".MyCalendarActivity" />
+
         <activity android:name=".Calendar_event" />
         <activity android:name=".Gridview_tamil" />
-        <activity android:name=".Registration"
-            android:label="Registeration" ></activity>
-        <activity android:name=".Horoscope_Registeretion"
+        <activity
+            android:name=".Registration"
+            android:label="Registeration" />
+        <activity android:name=".Horoscope_Registeretion" />
+        <activity android:name=".Cardview" />
+        <activity
+            android:name=".Cardview_tab"
+            android:label="@string/title_activity_cardview_tab"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Event"
+            android:label="Event"
             ></activity>
     </application>
 

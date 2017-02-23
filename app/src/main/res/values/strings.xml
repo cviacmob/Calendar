@@ -8,7 +8,7 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_monthly">Monthly</string>
     <string name="hello">Open calendar</string>
-
+    <string name="send_to">Share</string>
 
     <color name="text_color">#31D1F1</color>
     <color name="white">#ffffff</color>
@@ -33,5 +33,7 @@
     <string name="title_activity_previous">Previous</string>
     <string name="hint_mobile" />
     <string name="content_text" />
+    <string name="title_activity_cardviewq">Cardviewq</string>
+    <string name="title_activity_cardview_tab">Cardview_tab</string>
 
 </resources>

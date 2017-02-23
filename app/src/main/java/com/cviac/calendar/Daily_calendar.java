@@ -241,6 +241,13 @@ public class Daily_calendar extends ActionBarActivity {
 
 
             }
+            daysevents.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent eve=new Intent(getActivity(),Cardview_tab.class);
+                    startActivity(eve);
+                }
+            });
 
 
 
@@ -262,7 +269,7 @@ public class Daily_calendar extends ActionBarActivity {
 
 
             english_mn.setText(new SimpleDateFormat("MMM").format(c.getTime()));
-            english_date.setText(formattedDate);
+
 
             tamil_day.setTypeface(faceAkshar);
             int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
