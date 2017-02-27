@@ -283,6 +283,7 @@ public class Daily_calendar extends ActionBarActivity {
 
             if (Calendar.MONDAY == dayOfWeek) {
                 weekDay = "Monday";
+                english_day.setText(weekDay);
 
                 tamil_day.setText("திங்கள்");
 
@@ -290,23 +291,29 @@ public class Daily_calendar extends ActionBarActivity {
             } else if (Calendar.TUESDAY == dayOfWeek) {
                 weekDay = "Tuesday";
                 tamil_day.setText("செவ்வாய்");
+                english_day.setText(weekDay);
             } else if (Calendar.WEDNESDAY == dayOfWeek) {
                 weekDay = "Wednesday";
                 tamil_day.setText("புதன்");
+                english_day.setText(weekDay);
 
             } else if (Calendar.THURSDAY == dayOfWeek) {
                 weekDay = "Thursday";
                 tamil_day.setText("வியாழன்");
+                english_day.setText(weekDay);
             } else if (Calendar.FRIDAY == dayOfWeek) {
                 weekDay = "Friday";
                 tamil_day.setText("வெள்ளி");
+                english_day.setText(weekDay);
 
             } else if (Calendar.SATURDAY == dayOfWeek) {
                 weekDay = "Saturday";
                 tamil_day.setText("சனி");
+                english_day.setText(weekDay);
             } else if (Calendar.SUNDAY == dayOfWeek) {
                 weekDay = "Sunday";
                 tamil_day.setText("ஞாயிறு");
+                english_day.setText(weekDay);
             }
 
 
@@ -314,7 +321,7 @@ public class Daily_calendar extends ActionBarActivity {
             // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
            // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));e
             
-            english_day.setText(holde.getMonthdate());
+
 
 
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getActivity());

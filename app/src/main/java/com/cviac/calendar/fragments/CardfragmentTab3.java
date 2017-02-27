@@ -44,7 +44,7 @@ public class CardfragmentTab3 extends Fragment  {
 
         View view = inflater.inflate(R.layout.fragment_card3, container, false);
         MyRecyclerView = (RecyclerView) view.findViewById(R.id.cardView);
-        final TextView text = (TextView) view.findViewById(R.id.re_text);
+        //final TextView text = (TextView) view.findViewById(R.id.re_text);
         MyRecyclerView.setHasFixedSize(true);
         LinearLayoutManager MyLayoutManager = new LinearLayoutManager(getActivity());
         MyLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
