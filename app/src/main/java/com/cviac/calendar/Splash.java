@@ -24,7 +24,7 @@ public class Splash extends Activity {
         Thread background = new Thread() {
             public void run() {
                 try {
-                    sleep(2 * 1000);
+                    sleep(1 * 1000);
                     Intent i = new Intent(Splash.this,Daily_calendar.class);
                     startActivity(i);
                     finish();

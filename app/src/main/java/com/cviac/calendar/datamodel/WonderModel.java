@@ -16,6 +16,16 @@ public class WonderModel implements Serializable {
     String cost;
     String time;
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    String url;
+
     public String getTime() {
         return time;
     }
@@ -113,6 +123,8 @@ public class WonderModel implements Serializable {
     public void setAndroid_image_url(String android_image_url) {
         this.android_image_url = android_image_url;
     }
+
+
 }
 
 

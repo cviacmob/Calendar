@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="?android:attr/selectableItemBackground"
     android:padding="5dp"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="8dp">
 
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -22,14 +23,15 @@
             <ImageView
                 android:id="@+id/event_image"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="125dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:paddingBottom="16dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="24dp"
+
+
+                android:src="@mipmap/b"
+
+
                 android:text="Hello World!"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
@@ -40,105 +42,16 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:id="@+id/relativeLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/place_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/event_place"
-
-                    android:layout_alignLeft="@+id/date_icon"
-                    android:layout_alignStart="@+id/date_icon"
-                    android:layout_alignTop="@+id/event_place"
-                    android:layout_toEndOf="@+id/date_icon"
-                    android:layout_toRightOf="@+id/date_icon"
-                    android:src="@mipmap/mapicon" />
-
-                <TextView
-                    android:id="@+id/title"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-
-
-                    android:layout_alignParentTop="true"
-
-                    android:layout_marginLeft="15dp"
-                    android:text="Actoin1"
-                    android:textSize="22dp" />
-
-                <ImageView
-                    android:id="@+id/date_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/event_place"
-                    android:layout_alignLeft="@+id/title"
-                    android:layout_alignStart="@+id/title"
-                    android:layout_alignTop="@+id/date_event"
-                    android:src="@mipmap/icondd" />
-
-                <TextView
-                    android:id="@+id/event_place"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/date_event"
-                    android:layout_alignStart="@+id/date_event"
-                    android:layout_below="@+id/date_event"
-
-                    android:layout_marginTop="5dp"
-                    android:text="Textview"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/date_event"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/title"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@+id/date_icon"
-                    android:layout_toRightOf="@+id/date_icon"
-                    android:text="Textview"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/eve_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/event_place"
-                    android:layout_alignRight="@+id/event_place"
-                    android:layout_below="@+id/event_place"
-                    android:layout_marginTop="5dp"
-                    android:text="Textview" />
-
-                <ImageView
-                    android:id="@+id/time_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-
-                    android:layout_alignBottom="@+id/eve_time"
-                    android:layout_alignLeft="@+id/place_icon"
-                    android:layout_alignStart="@+id/place_icon"
-                    android:layout_alignTop="@+id/eve_time"
-                    android:layout_toLeftOf="@+id/event_place"
-                    android:layout_toStartOf="@+id/event_place"
-                    android:src="@mipmap/clock" />
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
 
 
+
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/relativeLayout3"
-                android:layout_marginTop="10dp"
-                android:background="#FA8072">
+                android:background="#ff99ff"
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/rupe_icon"
@@ -157,12 +70,114 @@
                     android:id="@+id/event_cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#FFffff"
+                    android:textSize="17dp"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/rupe_icon"
                     android:layout_toRightOf="@+id/rupe_icon"
                     android:text="Textview" />
 
 
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <ImageView
+                    android:id="@+id/place_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/event_place"
+
+                    android:layout_alignLeft="@+id/date_icon"
+                    android:layout_alignStart="@+id/date_icon"
+                    android:layout_alignTop="@+id/event_place"
+                    android:layout_toEndOf="@+id/date_icon"
+                    android:layout_toRightOf="@+id/date_icon"
+                    android:src="@mipmap/mapicon" />
+
+                <TextView
+                    android:id="@+id/event_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/date_event"
+                    android:layout_alignStart="@+id/date_event"
+                    android:layout_below="@+id/date_event"
+                    android:textColor="#606060"
+
+                    android:layout_marginTop="5dp"
+                    android:text="Textview"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/date_event"
+                    android:layout_width="wrap_content"
+                    android:textColor="#606060"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/date_icon"
+                    android:layout_toRightOf="@+id/date_icon"
+                    android:text="Textview"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/eve_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/event_place"
+                    android:layout_below="@+id/event_place"
+                    android:layout_marginTop="5dp"
+                    android:textSize="17dp"
+                    android:textColor="#606060"
+                    android:text="Textview" />
+
+                <ImageView
+                    android:id="@+id/time_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignBottom="@+id/eve_time"
+                    android:layout_alignLeft="@+id/place_icon"
+                    android:layout_alignStart="@+id/place_icon"
+                    android:layout_alignTop="@+id/eve_time"
+                    android:layout_toLeftOf="@+id/event_place"
+                    android:layout_toStartOf="@+id/event_place"
+                    android:src="@mipmap/clock" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:textColor="#202020"
+
+                    android:layout_width="wrap_content"
+                   android:paddingLeft="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:text="Actoin1"
+                    android:textSize="25dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <ImageView
+                    android:id="@+id/date_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icondd"
+                    android:layout_alignLeft="@+id/title"
+                    android:layout_alignStart="@+id/title"
+                    android:layout_above="@+id/event_place"
+                    android:layout_alignTop="@+id/date_event" />
             </RelativeLayout>
 
 
@@ -183,24 +198,30 @@
 
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:textColor="#202020"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="About"
-                android:textSize="15dp" />
+                android:textSize="22dp" />
 
             <TextView
                 android:id="@+id/about"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
+
+                android:textSize="17dp"
+                android:layout_marginLeft="5dp"
+
                 android:layout_alignLeft="@+id/about_title"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignStart="@+id/about_title"
                 android:layout_below="@+id/about_title"
                 android:layout_marginTop="10dp"
+                android:textColor="#606060"
                 android:text="Textview"
-                android:textSize="10dp" />
+               />
 
             <RelativeLayout
                 android:id="@+id/more_r"
@@ -213,7 +234,7 @@
                 <Button
                     android:id="@+id/more_about"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:background="#ffffff"
@@ -225,7 +246,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/more_r">
@@ -234,21 +255,35 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="23dp"
+                    android:textSize="17dp"
+                    android:textColor="#202020"
+                    android:layout_marginStart="23dp"
                     android:layout_marginTop="11dp"
-                    android:text="Location" />
+                    android:text="Location"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView3"
+                    android:src="@mipmap/map_image"/>
 
             </RelativeLayout>
 
 
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </RelativeLayout>
+
 
 
     </LinearLayout>
+
 
 
 </android.support.v7.widget.CardView>

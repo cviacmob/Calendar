@@ -25,9 +25,11 @@ import com.cviac.calendar.Event;
 import com.cviac.calendar.R;
 import com.cviac.calendar.datamodel.AndroidVersion;
 import com.cviac.calendar.datamodel.WonderModel;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class CardFragment extends Fragment {
@@ -48,7 +50,6 @@ public class CardFragment extends Fragment {
             "http://api.learn2crack.com/android/images/lollipop.png",
             "http://api.learn2crack.com/android/images/marshmallow.png"
     };
-    String[] cost;
 
 
     String[] description = {"Andal temple", "Karpaga Vinayagar Temple", "Meenakshi Amman Temple", "Abhishtavaradha Ganapathi Temple",
@@ -58,8 +59,21 @@ public class CardFragment extends Fragment {
     String eve;
     String eve2;
     String eve1;
-    String eve3;
-    String eve4;
+
+    ArrayList<String> Location = new ArrayList<String>();
+    ArrayList<String> date = new ArrayList<String>();
+    ArrayList<String> titles = new ArrayList<String>();
+    ArrayList<String> cost = new ArrayList<String>();
+    ArrayList<String> About = new ArrayList<String>();
+    ArrayList<String> imageurl = new ArrayList<String>();
+    ArrayList<String> time = new ArrayList<String>();
+    String cost1;
+    String time1;
+    String about1;
+    String date1;
+    String title1;
+    String imageurl1;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -148,17 +162,15 @@ public class CardFragment extends Fragment {
 
             //  holder.titleTextView.setText(list.get(position).getCardName());
 
-            //Toast.makeText(getActivity(),list.get(position).getCardName(),Toast.LENGTH_LONG).show();
 
 
-            holder.coverImageView.setImageResource(list.get(position).getImageResourceId());
+
+            //holder.coverImageView.setImageResource(list.get(position).getImageResourceId());
 
             holder.dates.setText(list.get(position).getdate());
             holder.places.setText(list.get(position).getplace());
-            //Picasso.with(context).load(android_versions.get(position).getAndroid_image_url()).resize(120, 60).into(holder.coverImageView);
-            // Picasso.with(context).load(android_versions.get(i).getAndroid_image_url()).resize(120, 60).into( holder.coverImageView);
-            // Picasso.with(context).load(list.get(position).getAndroid_image_url()).resize(120, 60).into( holder.coverImageView);
-            //Picasso.with(context).load(list.get(position).getAndroid_image_url()).resize(0b1111000, 60).into(holder.coverImageView);
+            Picasso.with(getActivity()).load(list.get(position).getUrl()).resize(120, 60).into(holder.coverImageView);
+
 
 
             holder.coverImageView.setTag(list.get(position).getImageResourceId());
@@ -181,13 +193,13 @@ public class CardFragment extends Fragment {
                             eve_in.putExtra("events", wm);
                             startActivity(eve_in);
 
-                            //Toast.makeText(getActivity(),itemPosition,Toast.LENGTH_LONG).show();
+
 
                         }
 
                         @Override
                         public void onLongItemClick(View view, int position) {
-                            // do whatever
+
                         }
                     })
             );
@@ -202,11 +214,11 @@ public class CardFragment extends Fragment {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private String mItem;
+
 
         public TextView titleTextView, event, dates, places;
         public ImageView coverImageView;
-        public ImageView likeImageView;
+
         public ImageView shareImageView;
 
         public MyViewHolder(View v) {
@@ -282,54 +294,57 @@ public class CardFragment extends Fragment {
 
     }
 
-    String[] des;
-    String[] place;
-    String[] date;
-    String[] about;
-
-    String[] time;
-    String cost1;
-
-    String cost2;
-    String cost3;
-    String time1;
-    String time2;
-    String time3;
-    String about1;
-    String about2;
-    String about3;
-
-
-    String value1;
-    String value2;
-    String value3;
-
-    String[] title;
+    int i;
 
 
     public void initializeList() {
         SQLiteDatabase dp = getActivity().openOrCreateDatabase("EventsDB", getActivity().getBaseContext().MODE_PRIVATE, null);
-        dp.execSQL("CREATE TABLE IF NOT EXISTS  Event(dates varchar(15),title varchar(100),cost varchar(50),about varchar(200),location varchar(100),image_uri varchar(200),time varchar(20));");
+        dp.execSQL("CREATE TABLE IF NOT EXISTS  Event(dates varchar(15),title varchar(100),cost varchar(50),about varchar(500),location varchar(150),image_uri varchar(200),time varchar(20));");
         //dp.execSQL("insert into Events(dates ,title ,cost ,about ,location ,image_uri )values('27-02-2017','Nebosh courses chennai','299 onwards','Nebosh international general certification course in chennai','Velachery','http://www.modernbuildinginc.com/wp-content/uploads/2015/05/safety_hardhat_1600_clr.png')");
         // dp.execSQL("ALTER TABLE Events ADD Time_event varchar(20)",null);
-        dp.execSQL("insert into Event(dates ,title ,cost ,about ,location ,image_uri,time )values('27-02-2017','Nebosh courses chennai','299 onwards','Nebosh international general certification course in chennai','Velachery','http://www.modernbuildinginc.com/wp-content/uploads/2015/05/safety_hardhat_1600_clr.png','9.00')");
-        dp.execSQL("insert into Event(dates ,title ,cost ,about ,location ,image_uri,time )values('28-02-2017','java course chennai','299 onwards','Tirch madurai','Velachery','http://www.modernbuildinginc.com/wp-content/uploads/2015/05/safety_hardhat_1600_clr.png','9.00')");
-        Cursor cur = dp.rawQuery("Select * from Event where dates='27-02-2017'", null);
+        dp.execSQL("insert into Event(dates ,title ,cost ,about ,location ,image_uri,time )values('27-02-2017','Nebosh courses chennai','299 onwards','Nebosh international general certification course in chennai','Srivilliputhur','http://www.modernbuildinginc.com/wp-content/uploads/2015/05/safety_hardhat_1600_clr.png','9.00')");
+        dp.execSQL("insert into Event(dates ,title ,cost ,about ,location ,image_uri,time )values('28-02-2017','java course chennai','299 onwards','Latest Update made on November 29,2016\n" +
+                "\n" +
+                "Is Hadoop easy to learn? \n" +
+                "\n" +
+                "For most professionals who are from various backgrounds like - Java, PHP, .net, mainframes, data warehousing, DBAs, data analytics - and want to get into a career in Hadoop and Big Data, this is the first question they ask themselves and their peers.','Velachery','https://s3.amazonaws.com/files.dezyre.com/images/blog/How+much+Java+is+required+to+learn+Hadoop_3.png','9.00')");
+        Cursor cur = dp.rawQuery("Select * from Event", null);
+
+
+
+        if (cur.moveToFirst()) {
+            while (cur.isAfterLast() == false) {
+                String name = cur.getString(cur.getColumnIndex("location"));
+                date1 = cur.getString(cur.getColumnIndex("dates"));
+                title1 = cur.getString(cur.getColumnIndex("title"));
+                cost1 = cur.getString(cur.getColumnIndex("cost"));
+                about1 = cur.getString(cur.getColumnIndex("about"));
+                imageurl1 = cur.getString(cur.getColumnIndex("image_uri"));
+                time1 = cur.getString(cur.getColumnIndex("time"));
+
+                Location.add(name);
+                date.add(date1);
+                titles.add(title1);
+                cost.add(cost1);
+                About.add(about1);
+                imageurl.add(imageurl1);
+                time.add(time1);
+                cur.moveToNext();
+            }
+        }
 
 
         if (cur.moveToFirst()) {
             eve = cur.getString(1);
             eve1 = cur.getString(4);
             eve2 = cur.getString(0);
-            cost1=cur.getString(2);
-            time1=cur.getString(6);
-            about1=cur.getString(3);
+            cost1 = cur.getString(2);
+            time1 = cur.getString(6);
+            about1 = cur.getString(3);
+            cur.moveToNext();
+
 
         }
-        title = new String[]{eve, "plc programming"};
-        cost=new String[]{cost1};
-        about=new String[]{about1};
-        time=new String[]{time1};
 
 
         // insert into Events(dates ,title ,cost ,about ,location ,image_uri )values('27-02-2017','Nebosh courses chennai','299 onwards','Nebosh international general certification course in chennai','Velachery','http://www.modernbuildinginc.com/wp-content/uploads/2015/05/safety_hardhat_1600_clr.png');
@@ -337,51 +352,28 @@ public class CardFragment extends Fragment {
 
         String Wonders[] = {eve, "Plc programming", "Great Wall of China", "Machu Picchu", "Petra", "Taj Mahal", "Colosseum"};
         listitems.clear();
-     /*   EventAcces eventAcces= EventAcces.getInstance2(getActivity());
-        eventAcces.open();
-        Cursor cursor=eventAcces.getDayEvent("25-02-2017");
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            eve=(cursor.getString(1));
-
-
-            // description= new String[]{eve};
-
-            ar.add(eve);
-
-
-
-
-
-            cursor.moveToNext();
-        }
-        eventAcces.close();*/
 
         getActivity().setTitle("Events");
 
 
-        des = new String[]{eve, value1};
-        place = new String[]{eve1, value2};
-        date = new String[]{eve2, value3};
-
-
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 2; i++) {
 
             WonderModel item = new WonderModel();
             AndroidVersion androidVersion = new AndroidVersion();
             item.setCardName(Wonders[i]);
-            item.setplace(place[i]);
-            item.setdate(date[i]);
-            item.setCost(cost[i]);
-            item.setAbout(about[i]);
-            item.setTime(time[i]);
+            item.setplace(Location.get(i));
+            item.setdate(date.get(i));
+            item.setCost(cost.get(i));
+            item.setAbout(About.get(i));
+            item.setTime(time.get(i));
             //item.setandroid_image_urls(android_image_url[i]);
             // item.setAndroid_image_url(android_image_urls[i]);
             //androidVersion.setAndroid_image_url(android_image_urls[i]);
 
-            item.setDescription(title[i]);
+            item.setDescription(titles.get(i));
             item.setImageResourceId(Images[i]);
+            item.setUrl(imageurl.get(i));
             item.setIsfav(0);
             item.setIsturned(0);
             listitems.add(item);

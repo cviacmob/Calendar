@@ -35,5 +35,6 @@
     <string name="content_text" />
     <string name="title_activity_cardviewq">Cardviewq</string>
     <string name="title_activity_cardview_tab">Cardview_tab</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
