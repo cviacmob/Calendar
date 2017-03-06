@@ -21,6 +21,7 @@ public class Assert_data extends Activity implements View.OnClickListener, LoadI
 
 
 
+
     public static final String IMAGE_URL = "http://photos.wikimapia.org/p/00/00/58/20/98_big.jpg";
     ImageView im;
     Button b1;
@@ -29,15 +30,7 @@ public class Assert_data extends Activity implements View.OnClickListener, LoadI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assert_data);
 
-        EventAcces eventAcces= EventAcces.getInstance2(Assert_data.this);
-        eventAcces.open();
-        Cursor cursor=eventAcces.getDayEvent("25-02-2017");
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            eve=(cursor.getString(1));
-            cursor.moveToNext();
-        }
-        eventAcces.close();
+
 
 
         TextView t1=(TextView)findViewById(R.id.tex);

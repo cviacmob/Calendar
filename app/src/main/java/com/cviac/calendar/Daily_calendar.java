@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,11 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cviac.calendar.datamodel.MyDataHolder;
+import android.widget.ImageView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 
 public class Daily_calendar extends ActionBarActivity {
@@ -59,6 +58,8 @@ public class Daily_calendar extends ActionBarActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -122,6 +123,7 @@ public class Daily_calendar extends ActionBarActivity {
            in=new Intent(Daily_calendar.this,MyCalendarActivity.class);
             startActivity(in);
         }
+        onBackPressed();
 
 
 
@@ -150,31 +152,48 @@ public class Daily_calendar extends ActionBarActivity {
          */
 
 
-        String datas;
 
-        int mm=2;
-        int yy=2017;
-        String current;
+
+
+
+
+
         private static final String tag = "GridCellAdapter";
-        private static final int DAY_OFFSET = 1;
+
         private final String[] weekdays = new String[]{"Sun", "Mon", "Tue",
+
                 "Wed", "Thu", "Fri", "Sat"};
-        private  List<String> list;
-        private int daysInMonth;
-        private int currentDayOfMonth;
-        private int currentWeekDay;
+
+        String[] aspcious={"ராகு","எமகண்டம்","குளிகை","இரவு ராகு","இரவு எம","இரவு குளிகை"};
+        String[] rasis={"மேஷம் -வரவு , ரிஷபம் சிக்கல் , மிதுனம் , நோய் , கடகம் எதிர்ப்பு , சிம்சிம் , வெற்றி , கனி , சிந்தனை , துலாம் , பயம் , விருச்சகம் நட்ப்பு , தனுசு , தடங்கல் , மகரம் , மகிழ்ச்சி , கும்பம் ஆதாயம் , மீனம் சுகம்" };
+
+
+
+
         private final String[] months = {"January", "February", "March",
                 "April", "May", "June", "July", "August", "September",
                 "October", "November", "December"};
+
         private final int[] daysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30,
                 31, 30, 31};
+       
+        String[] parts;
+        String part1;
+        String part2;
+        String[] prt;
+        String part3;
+        String part4;
+        String timecom;
+       ImageView onc1 ,onc2,pan;
 
         TextView english_mn, english_date, english_day, tamil_mn, tamil_date, tamil_day, daysevents, nalaneram, panchanganeram, nightpangam,
-                rasihet, rasipalan, pan_kulikai, pan_aama, nigh_pan_aam, night_kuli;
+                rasihet, rasipalan, pan_kulikai, pan_aama, nigh_pan_aam, night_kuli,l1,l2,l3,l4,l5,l6;
         TextView box1, box2, box3, box4, box5, box6, box7, box8, box9, box10, box11, box12, box13;
         private static final String ARG_SECTION_NUMBER = "section_number";
         String formattedDate;
-        String data;
+        DatabaseAccess databaseAccess ;
+        Cursor cursor;
+
         MyDataHolder holde=new MyDataHolder();
 
 
@@ -193,14 +212,16 @@ public class Daily_calendar extends ActionBarActivity {
             return fragment;
         }
 
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
 
 
-
             View rootView = inflater.inflate(R.layout.fragment_tamil_calendar, container, false);
+            databaseAccess = DatabaseAccess.getInstance(getActivity());
+
             english_mn = (TextView) rootView.findViewById(R.id.eng_mn);
             english_date = (TextView) rootView.findViewById(R.id.engdate);
             english_day = (TextView) rootView.findViewById(R.id.english_day);
@@ -223,16 +244,100 @@ public class Daily_calendar extends ActionBarActivity {
             box2 = (TextView) rootView.findViewById(R.id.bb);
             box3 = (TextView) rootView.findViewById(R.id.cc);
             box4 = (TextView) rootView.findViewById(R.id.dd);
-            box5 = (TextView) rootView.findViewById(R.id.six);
-            box6 = (TextView) rootView.findViewById(R.id.ii);
-            box7 = (TextView) rootView.findViewById(R.id.hh);
-            box8 = (TextView) rootView.findViewById(R.id.mmm);
-            box9 = (TextView) rootView.findViewById(R.id.jj);
-            box10 = (TextView) rootView.findViewById(R.id.kk);
-            box11 = (TextView) rootView.findViewById(R.id.mm);
-            box12 = (TextView) rootView.findViewById(R.id.nn);
-            box13 = (TextView) rootView.findViewById(R.id.oo);
-          //  String Item = getActivity().getIntent().getExtras().getString("image");
+            box5 = (TextView) rootView.findViewById(R.id.ee);
+            box6 = (TextView) rootView.findViewById(R.id.ff);
+            box7 = (TextView) rootView.findViewById(R.id.gg);
+            box8 = (TextView) rootView.findViewById(R.id.hh);
+            box9 = (TextView) rootView.findViewById(R.id.ii);
+            box10 = (TextView) rootView.findViewById(R.id.jj);
+            box11 = (TextView) rootView.findViewById(R.id.kk);
+            box12 = (TextView) rootView.findViewById(R.id.ll);
+            box13 = (TextView) rootView.findViewById(R.id.mm);
+            pan=(ImageView)rootView.findViewById(R.id.pan_click);
+            onc1=(ImageView)rootView.findViewById(R.id.onclick);
+            onc2=(ImageView)rootView.findViewById(R.id.onclick2);
+            l1=(TextView)rootView.findViewById(R.id.lt1);
+            l2=(TextView)rootView.findViewById(R.id.lt2);
+            l3=(TextView)rootView.findViewById(R.id.ltt3);
+            l4=(TextView)rootView.findViewById(R.id.ltt4);
+            l5=(TextView)rootView.findViewById(R.id.lt5);
+            l6=(TextView)rootView.findViewById(R.id.lt6);
+
+
+            String s=getActivity().getIntent().getStringExtra("dats");
+            pan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent pa=new Intent(getActivity(),Panchaingam_chat.class);
+                    startActivity(pa);
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+            onc1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(),"onclick",Toast.LENGTH_LONG).show();
+                    databaseAccess.open();
+                    cursor=databaseAccess.getDayReacord(formattedDate);
+                    cursor.moveToFirst();
+                    while (!cursor.isAfterLast()){
+                        String val=(cursor.getString(7));
+                        l4.setText("இரவு ராகு");
+
+                        nightpangam.setText(val);
+
+                        val=(cursor.getString(8));
+                        l5.setText("இரவு எம");
+
+                        nigh_pan_aam.setText(val);
+
+                        val=(cursor.getString(9));
+                        l6.setText("இரவு குளிகை");
+
+                        night_kuli.setText(val);
+
+
+                        cursor.moveToNext();
+                    }
+                    databaseAccess.close();
+
+                    Toast.makeText(getActivity(),"click one",Toast.LENGTH_LONG).show();
+                }
+            });
+            rasipalan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    databaseAccess.open();
+                    cursor = databaseAccess.getDayReacord(formattedDate);
+                    cursor.moveToFirst();
+                    while (!cursor.isAfterLast()) {
+                        String val = (cursor.getString(10));
+                        rasipalan.setText(val);
+
+                        cursor.moveToNext();
+                    }
+                    databaseAccess.close();
+                }
+            });
+
+
+
+
+
+
             Intent intent =getActivity(). getIntent();
             if (null != intent) {
                 String mothlydata = intent.getStringExtra("image");
@@ -249,25 +354,38 @@ public class Daily_calendar extends ActionBarActivity {
                 }
             });
 
-
-
-
-
-
             Typeface faceAkshar = Typeface.createFromAsset(getActivity().getAssets(), "akshar.ttf");
 
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat tf=new SimpleDateFormat("h");
             formattedDate = df.format(c.getTime());
+            timecom=tf.format(c.getTime());
             int a = getArguments().getInt(ARG_SECTION_NUMBER);
             int dd=50;
 
             int b = a -dd;
-            c.add(Calendar.DATE, b);
+
+            if(s!=null){
+                formattedDate=s;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    c.setTime(sdf.parse(s));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Toast.makeText(getActivity(),s,Toast.LENGTH_LONG).show();
+
+            }
+
+
+                c.add(Calendar.DATE, b);
+
+
             formattedDate = df.format(c.getTime());
+
             english_date.setText(formattedDate);
-
-
             english_mn.setText(new SimpleDateFormat("MMM").format(c.getTime()));
 
 
@@ -275,11 +393,6 @@ public class Daily_calendar extends ActionBarActivity {
             int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
             tamil_day.setTypeface(faceAkshar);
             String weekDay = "";
-
-            //rasihet.setText(dataes);
-           // tamil_date.setText(dataes);
-
-
 
             if (Calendar.MONDAY == dayOfWeek) {
                 weekDay = "Monday";
@@ -318,44 +431,178 @@ public class Daily_calendar extends ActionBarActivity {
 
 
 
+
+
+
+
+
+
+
             // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
            // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));e
-            
 
 
 
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getActivity());
+
+
+            onc2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    databaseAccess.open();
+                    cursor=databaseAccess.getDayReacord(formattedDate);
+                    cursor.moveToFirst();
+                    while (!cursor.isAfterLast()){
+                       String val=(cursor.getString(3));
+
+                        panchanganeram.setText(val);
+                        l1.setText("ராகு");
+
+
+                        val=(cursor.getString(5));
+                        l3.setText("குளிகை");
+
+                        pan_kulikai.setText(val);
+
+                        val=(cursor.getString(4));
+                        l2.setText("எமகண்டம்");
+
+                        pan_aama.setText(val);
+
+
+                        cursor.moveToNext();
+                    }
+                    databaseAccess.close();
+
+                    Toast.makeText(getActivity(),"click one",Toast.LENGTH_LONG).show();
+
+                }
+            });
+
             databaseAccess.open();
-            Cursor cursor = databaseAccess.getDayReacord(formattedDate);
+             cursor= databaseAccess.getDayReacord(formattedDate);
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
                 String  val=(cursor.getString(1));
                 daysevents.setText(val);
                 val=(cursor.getString(2));
+
+
                 nalaneram.setText(val);
                 val=(cursor.getString(6));
+
                 tamil_mn.setText(val);
+
                 val=(cursor.getString(3));
-                panchanganeram.setText(val);
+                String spl=val;
+                parts = spl.split("-");
+                part1= parts[0];
+                part2= parts[1];
+
+                prt= part1.split("\\.");
+                part3= prt[0];
+                part4 = prt[1];
+                if (part3.equals(timecom)) {
+                    l2.setText("ராகு");
+
+                   pan_kulikai .setText(val);
+                }
+
                 val=(cursor.getString(5));
-                pan_kulikai.setText(val);
+                spl = val;
+                parts = spl.split("-");
+                part1= parts[0];
+                part2= parts[1];
+
+                prt= part1.split("\\.");
+                part3= prt[0];
+                part4 = prt[1];
+                if (part3.equals(timecom)) {
+                    l2.setText("குளிகை");
+
+                    pan_kulikai .setText(val);
+                }
+
                 val=(cursor.getString(4));
-                pan_aama.setText(val);
+                spl = val;
+                parts = spl.split("-");
+                part1= parts[0];
+                part2= parts[1];
+
+                prt= part1.split("\\.");
+                part3= prt[0];
+                part4 = prt[1];
+                if (part3.equals(timecom)) {
+                    l2.setText("எமகண்டம்");
+
+                    pan_kulikai .setText(val);
+                }
+
+
                 val=(cursor.getString(7));
-                nightpangam.setText(val);
+                spl = val;
+                parts = spl.split("-");
+                part1= parts[0];
+                part2= parts[1];
+
+                prt= part1.split("\\.");
+                part3= prt[0];
+                part4 = prt[1];
+                if (part3.equals(timecom)) {
+
+                    nigh_pan_aam.setText(val);
+                }
+
+
+
                 val=(cursor.getString(8));
-                night_kuli.setText(val);
+                spl = val;
+                parts = spl.split("-");
+                part1= parts[0];
+                part2= parts[1];
+
+                prt= part1.split("\\.");
+                part3= prt[0];
+                part4 = prt[1];
+                if (part3.equals(timecom)) {
+
+                    nigh_pan_aam.setText(val);
+                }
+
                 val=(cursor.getString(9));
-                nigh_pan_aam.setText(val);
-                val=(cursor.getString(10));
+                spl = val;
+                parts = spl.split("-");
+                part1= parts[0];
+                part2= parts[1];
+
+                prt= part1.split("\\.");
+                part3= prt[0];
+                part4 = prt[1];
+                if (part3.equals(timecom)) {
+
+                    nigh_pan_aam.setText(val);
+                }
+
+                val=(cursor.getString(11));
                 rasipalan.setText(val);
                 cursor.moveToNext();
             }
             databaseAccess.close();
-         rasihet.setTypeface(faceAkshar);
-           rasihet.setText("இராசிபலன்");
 
-           // rasihet.setText(Item);
+
+
+           // rasihet.setText(time);
+
+
+
+                    rasihet.setTypeface(faceAkshar);
+                    rasihet.setText("இராசிபலன்");
+
+
+
+
+
+
+
 
 
 
@@ -402,192 +649,6 @@ public class Daily_calendar extends ActionBarActivity {
             }
             databaseAccess2.close();
 
-            Calendar calendar = Calendar.getInstance();
-            setCurrentDayOfMonth(calendar.get(Calendar.DAY_OF_MONTH));
-            setCurrentWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
-
-
-                Log.d(tag, "==> printMonth: mm: " + mm + " " + "yy: " + yy);
-                int trailingSpaces = 0;
-                int daysInPrevMonth = 0;
-                int prevMonth = 0;
-                int prevYear = 0;
-                int nextMonth = 0;
-                int nextYear = 0;
-
-                int currentMonth = mm - 1;
-                String currentMonthName = getMonthAsString(currentMonth);
-
-                daysInMonth = getNumberOfDaysOfMonth(currentMonth);
-
-                Log.d(tag, "Current Month: " + " " + currentMonthName + " having "
-                        + daysInMonth + " days.");
-
-                GregorianCalendar cal = new GregorianCalendar(yy, currentMonth, 1);
-                Log.d(tag, "Gregorian Calendar:= " + cal.getTime().toString());
-
-                if (currentMonth == 11) {
-                    prevMonth = currentMonth - 1;
-                    daysInPrevMonth = getNumberOfDaysOfMonth(prevMonth);
-                    nextMonth = 0;
-                    prevYear = yy;
-                    nextYear = yy + 1;
-                    Log.d(tag, "*->PrevYear: " + prevYear + " PrevMonth:"
-                            + prevMonth + " NextMonth: " + nextMonth
-                            + " NextYear: " + nextYear);
-                } else if (currentMonth == 0) {
-                    prevMonth = 11;
-                    prevYear = yy - 1;
-                    nextYear = yy;
-                    daysInPrevMonth = getNumberOfDaysOfMonth(prevMonth);
-                    nextMonth = 1;
-                    Log.d(tag, "**--> PrevYear: " + prevYear + " PrevMonth:"
-                            + prevMonth + " NextMonth: " + nextMonth
-                            + " NextYear: " + nextYear);
-                } else {
-                    prevMonth = currentMonth - 1;
-                    nextMonth = currentMonth + 1;
-                    nextYear = yy;
-                    prevYear = yy;
-                    daysInPrevMonth = getNumberOfDaysOfMonth(prevMonth);
-                    Log.d(tag, "***---> PrevYear: " + prevYear + " PrevMonth:"
-                            + prevMonth + " NextMonth: " + nextMonth
-                            + " NextYear: " + nextYear);
-                }
-
-                int currentWeekDay = cal.get(Calendar.DAY_OF_WEEK) - 1;
-                trailingSpaces = currentWeekDay;
-
-                Log.d(tag, "Week Day:" + currentWeekDay + " is "
-                        + getWeekDayAsString(currentWeekDay));
-                Log.d(tag, "No. Trailing space to Add: " + trailingSpaces);
-                Log.d(tag, "No. of Days in Previous Month: " + daysInPrevMonth);
-
-                if (cal.isLeapYear(cal.get(Calendar.YEAR)))
-                    if (mm == 2)
-                        ++daysInMonth;
-                    else if (mm == 3)
-                        ++daysInPrevMonth;
-
-                // Trailing Month days
-                for (int i = 0; i < trailingSpaces; i++) {
-                    Log.d(tag,
-                            "PREV MONTH:= "
-                                    + prevMonth
-                                    + " => "
-                                    + getMonthAsString(prevMonth)
-                                    + " "
-                                    + String.valueOf((daysInPrevMonth
-                                    - trailingSpaces + DAY_OFFSET)
-                                    + i));
-
-               /* list.add(String.valueOf((daysInPrevMonth - trailingSpaces + DAY_OFFSET) + i) + "-WHITE" + "-"
-                        + getMonthAsString(prevMonth)
-                        + "-"
-                        + prevYear);*/
-                }
-
-                // Current Month Days
-			/*private final String[] months = { "January", "February", "March",
-					"April", "May", "June", "July", "August", "September",
-					"October", "November", "December" };*/
-
-                String mon = getMonthAsString(currentMonth);
-
-                int aa = 0;
-                int bb = 0;
-                if (mon == "January") {
-                    aa = 17;
-                    bb = 29;
-                }
-
-                if (mon == "February") {
-                    aa = 19;
-                    bb = 30;
-                }
-                if (mon == "March") {
-                    aa = 17;
-                    bb = 29;
-                }
-                if (mon == "April") {
-                    aa = 19;
-                    bb = 31;
-                }
-                if (mon == "May") {
-                    aa = 18;
-                    bb = 30;
-                }
-                if (mon == "June") {
-                    aa = 18;
-                    bb = 31;
-                }
-                if (mon == "July") {
-                    aa = 17;
-                    bb = 32;
-                }
-                if (mon == "August") {
-                    aa = 16;
-                    bb = 31;
-                }
-
-                if (mon == "September") {
-                    aa = 16;
-                    bb = 31;
-                }
-                if (mon == "October") {
-                    aa = 15;
-                    bb = 31;
-                }
-                if (mon == "November") {
-                    aa = 15;
-                    bb = 30;
-                }
-                if (mon == "December") {
-                    aa = 15;
-                    bb = 29;
-                }
-
-
-                for (int i = aa; i <= daysInMonth + aa; i++) {
-
-                    Log.d(currentMonthName, String.valueOf(i) + " " + getMonthAsString(currentMonth) + " " + yy);
-                    current=String.valueOf(i);
-                   // tamil_date.setText(current);
-                    if (i == getCurrentDayOfMonth()) {
-                        // list.add(String.valueOf(i) + "-BLUE" + "-" + getMonthAsString(currentMonth) + "-" + yy);
-                        current=String.valueOf(i) + "-BLUE" + "-" + getMonthAsString(currentMonth) + "-" + yy;
-                        //tamil_date.setText(current);
-
-                    } else {
-                        int ab = i;
-                        int ac = 0;
-                        int ad = bb;
-
-
-                        if (ab > ad) {
-
-                            ac = ab - ad;
-                        } else {
-                            ac = ab;
-
-
-                        }
-
-                        //tamil_date.setText(cc);
-                        // list.add(String.valueOf(ac) + "-GREY" + "-" + getMonthAsString(currentMonth) + "-" + yy + String.valueOf(i));
-
-
-                    }
-                }
-
-
-                // Leading Month days
-           /*     for (int i = 0; i < list.size() % 7; i++) {
-                    Log.d(tag, "NEXT MONTH:= " + getMonthAsString(nextMonth));
-                    // list.add(String.valueOf(i + 1) + "-GREY" + "-" + getMonthAsString(nextMonth) + "-" + nextYear);
-
-
-                }*/
 
 
 
@@ -596,35 +657,7 @@ public class Daily_calendar extends ActionBarActivity {
             return rootView;
         }
 
-        private void setCurrentWeekDay(int i) {
-            this.currentWeekDay = i;
-        }
 
-
-        private String getWeekDayAsString(int i) {
-            return weekdays[i];
-        }
-
-        private int getNumberOfDaysOfMonth(int i) {
-
-            return daysOfMonth[i];
-        }
-
-        private String getMonthAsString(int i) {
-            return months[i];
-        }
-
-
-        public int getCurrentDayOfMonth() {
-            return currentDayOfMonth;
-        }
-
-        public void setCurrentDayOfMonth(int currentDayOfMonth) {
-            this.currentDayOfMonth = currentDayOfMonth;
-        }
-        public int getCurrentWeekDay() {
-            return currentWeekDay;
-        }
     }
 
     /**

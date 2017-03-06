@@ -20,11 +20,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cviac.calendar.datamodel.MyDataHolder;
 
@@ -104,6 +106,14 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 				R.id.calendar_day_gridcell, month, year,month1,year1);
 		adapter.notifyDataSetChanged();
 		calendarView.setAdapter(adapter);
+		calendarView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Toast.makeText(MyCalendarActivity.this, position + "#Selected", Toast.LENGTH_LONG).show();
+
+			}
+		});
+
 
 	}
 
@@ -170,9 +180,9 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 		private static final int DAY_OFFSET = 1;
 		private final String[] weekdays = new String[]{"Sun", "Mon", "Tue",
 				"Wed", "Thu", "Fri", "Sat"};
-		private final String[] months = {"January", "February", "March",
-				"April", "May", "June", "July", "August", "September",
-				"October", "November", "December"};
+		private final String[] months = {"01", "02", "03",
+				"04", "05", "06", "07", "08", "09",
+				"10", "11", "12"};
 		private final int[] daysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30,
 				31, 30, 31};
 		private int daysInMonth;
@@ -610,9 +620,9 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 			num_events_per_day.setText(tomorrow);
 
 
-			gridcell.setTag(theday + "-" + themonth + "-" + theyear);
-			Log.d(tag, "Setting GridCell " + theday + "-" + themonth + "-"
-					+ theyear);
+			gridcell.setTag(tomorrow + "-" + tom_month + "-" + tom_year);
+			Log.d(tag, "Setting GridCell " + tomorrow + "-" + tom_month + "-"
+					+ tom_year);
 
 			if (day_color[1].equals("GREY")) {
 				gridcell.setTextColor(Color.parseColor("#155ED4"));
@@ -645,6 +655,17 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View view) {
 			date_month_year = (String) view.getTag();
+			String [] dsp=date_month_year.split("-");
+			String s1=dsp[0];
+			String s2=dsp[1];
+			String s3=dsp[2];
+			String s4=s3.substring(0,4);
+			String date=s1+"-"+s2+"-"+s4;
+
+			Toast.makeText(getApplication(),date_month_year,Toast.LENGTH_LONG).show();
+			Intent daily=new Intent(getApplication(),Daily_calendar.class);
+					daily.putExtra("dats",date);
+			startActivity(daily);
 
 
 
@@ -659,14 +680,9 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 			/*Intent in=new Intent(MyCalendarActivity.this,Daily_calendar.class);
 			startAcitvity(in);*/
 
-			Intent in1 = new Intent(getActivity(), Daily_calendar.class);
 
-			in1.putExtra("image","hello");
-			startActivity(in1);
 
-			Intent in = new Intent(getActivity(), Daily_calendar.class);
-			startAcitvity(in);
-			finish();
+
 
 
 
@@ -683,13 +699,7 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 
 		}
 
-		private void startAcitvity(Intent in) {
-			return;
-		}
 
-		private Context getActivity() {
-			return getActivity();
-		}
 
 		public int getCurrentDayOfMonth() {
 			return currentDayOfMonth;

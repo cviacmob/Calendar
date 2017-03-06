@@ -12,8 +12,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".CalendarApp"
         android:allowBackup="true"
-        android:icon="@drawable/panna"
+        android:icon="@mipmap/tamilnalkadi"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Splash"
@@ -34,8 +35,7 @@
         <activity android:name=".Gridview_tamil" />
         <activity
             android:name=".Registration"
-            android:label="Registeration" />
-        <activity android:name=".Horoscope_Registeretion" />
+            android:label="Registration" />
         <activity android:name=".Cardview" />
         <activity
             android:name=".Cardview_tab"
@@ -59,7 +59,12 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".Event_details"
+            android:label="@string/title_activity_event_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Panchaingam_chat"></activity>
     </application>
 
 </manifest>

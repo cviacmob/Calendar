@@ -17,7 +17,7 @@ import java.util.List;
 public class Event extends AppCompatActivity {
     TextView titles, expen, dates,eve_place,times,eve_cost,ab;
     ImageView eve_image;
-    List<WonderModel> wndr;
+
     TextView more;
     String moredetails;
     ImageView ma;

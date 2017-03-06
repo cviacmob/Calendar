@@ -1,6 +1,6 @@
 package com.cviac.calendar;
 
-import android.support.design.widget.TabLayout;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,17 +17,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cviac.calendar.fragments.CardFragment;
-import com.cviac.calendar.fragments.CardFragmentTab2;
-import com.cviac.calendar.fragments.CardfragmentTab1;
-import com.cviac.calendar.fragments.FragmentTab1;
-import com.cviac.calendar.fragments.FragmentTab2;
-import com.cviac.calendar.fragments.FragmentTab3;
+import com.cviac.calendar.datamodel.WonderModel;
+import com.squareup.picasso.Picasso;
 
-public class Cardview_tab extends AppCompatActivity {
+import java.util.List;
 
+public class Event_details extends AppCompatActivity {
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -46,40 +44,25 @@ public class Cardview_tab extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardview_tab);
+        setContentView(R.layout.activity_event_details);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
-     /*   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_cardview_tab, menu);
+        getMenuInflater().inflate(R.menu.menu_event_details, menu);
         return true;
     }
 
@@ -95,27 +78,26 @@ public class Cardview_tab extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        onBackPressed();
+        return true;
 
-        return super.onOptionsItemSelected(item);
+        //return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
+
+
     public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        TextView titles, expen, dates, eve_place, times, eve_cost, ab;
+        ImageView eve_image;
+        List<WonderModel> wndr;
+        TextView more;
+        String moredetails;
+        ImageView ma;
 
         public PlaceholderFragment() {
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -127,9 +109,56 @@ public class Cardview_tab extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_cardview_tab, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            View rootView = inflater.inflate(R.layout.fragment_event_details, container, false);
+            titles = (TextView) rootView.findViewById(R.id.title);
+            dates = (TextView) rootView.findViewById(R.id.date_event);
+            expen = (TextView) rootView.findViewById(R.id.event_cost);
+            times = (TextView) rootView.findViewById(R.id.eve_time);
+            more = (TextView) rootView.findViewById(R.id.more_about);
+            ma = (ImageView) rootView.findViewById(R.id.map);
+
+            Intent i = getActivity().getIntent();
+            final WonderModel wndrm = (WonderModel) i.getSerializableExtra("events");
+
+            ab = (TextView) rootView.findViewById(R.id.about);
+
+            eve_image = (ImageView) rootView.findViewById(R.id.event_image);
+            eve_place = (TextView) rootView.findViewById(R.id.event_place);
+            titles.setText(wndrm.getDescription());
+            dates.setText(wndrm.getdate());
+            eve_place.setText(wndrm.getplace());
+            expen.setText(wndrm.getCost());
+            times.setText(wndrm.getTime());
+            ab.setText(wndrm.getAbout());
+            moredetails = wndrm.getAbout();
+            Picasso.with(getActivity()).load(wndrm.getUrl()).resize(120, 60).into(eve_image);
+            final String Actionbar = wndrm.getDescription();
+            more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent detail = new Intent(getActivity(), About.class);
+                    detail.putExtra("det", moredetails);
+                    detail.putExtra("action", Actionbar);
+                    startActivity(detail);
+                }
+            });
+
+
+            ma.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent detail = new Intent(getActivity(), MapsActivity.class);
+//                detail.putExtra("det",moredetails);
+//                detail.putExtra("action",Actionbar);
+                    startActivity(detail);
+                }
+            });
+
+
+            // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }
@@ -148,47 +177,24 @@ public class Cardview_tab extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-
-            switch (position) {
-
-                // Open FragmentTab1.java
-                case 0:
-                    CardFragment cardFragment=new CardFragment();
-                   // FragmentTab1 fragmenttab1 = new FragmentTab1();
-                    return cardFragment;
-
-                // Open FragmentTab2.java
-                case 1:
-                    CardfragmentTab1 cardfragmentTab1=new CardfragmentTab1();
-                    return cardfragmentTab1;
-
-                // Open FragmentTab3.java
-                case 2:
-                    CardFragmentTab2 cardFragmentTab2=new CardFragmentTab2();
-                    return cardFragmentTab2;
-            }
-            return null;
+            return PlaceholderFragment.newInstance(position + 1);
         }
-       /*     return PlaceholderFragment.newInstance(position + 1);
-        }*/
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 1;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Traditional";
+                    return "SECTION 1";
                 case 1:
-                    return "Entertainment";
+                    return "SECTION 2";
                 case 2:
-                    return "Sports";
-               /* case 3:
-                    return "My Event";*/
+                    return "SECTION 3";
             }
             return null;
         }

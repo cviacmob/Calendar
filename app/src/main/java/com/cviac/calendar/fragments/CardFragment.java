@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cviac.calendar.Event;
+import com.cviac.calendar.Event_details;
 import com.cviac.calendar.R;
 import com.cviac.calendar.datamodel.AndroidVersion;
 import com.cviac.calendar.datamodel.WonderModel;
@@ -189,7 +190,7 @@ public class CardFragment extends Fragment {
                             WonderModel wm = listitems.get(position);
 
 
-                            Intent eve_in = new Intent(getActivity(), Event.class);
+                            Intent eve_in = new Intent(getActivity(), Event_details.class);
                             eve_in.putExtra("events", wm);
                             startActivity(eve_in);
 
@@ -299,15 +300,13 @@ public class CardFragment extends Fragment {
 
     public void initializeList() {
         SQLiteDatabase dp = getActivity().openOrCreateDatabase("EventsDB", getActivity().getBaseContext().MODE_PRIVATE, null);
-        dp.execSQL("CREATE TABLE IF NOT EXISTS  Event(dates varchar(15),title varchar(100),cost varchar(50),about varchar(500),location varchar(150),image_uri varchar(200),time varchar(20));");
+        dp.execSQL("CREATE TABLE IF NOT EXISTS  Event(dates varchar(15),title varchar(100),cost varchar(50),about varchar(500),location varchar(150),image_uri varchar(200),time varchar(20),organiser varchar(100));");
         //dp.execSQL("insert into Events(dates ,title ,cost ,about ,location ,image_uri )values('27-02-2017','Nebosh courses chennai','299 onwards','Nebosh international general certification course in chennai','Velachery','http://www.modernbuildinginc.com/wp-content/uploads/2015/05/safety_hardhat_1600_clr.png')");
         // dp.execSQL("ALTER TABLE Events ADD Time_event varchar(20)",null);
-        dp.execSQL("insert into Event(dates ,title ,cost ,about ,location ,image_uri,time )values('27-02-2017','Nebosh courses chennai','299 onwards','Nebosh international general certification course in chennai','Srivilliputhur','http://www.modernbuildinginc.com/wp-content/uploads/2015/05/safety_hardhat_1600_clr.png','9.00')");
-        dp.execSQL("insert into Event(dates ,title ,cost ,about ,location ,image_uri,time )values('28-02-2017','java course chennai','299 onwards','Latest Update made on November 29,2016\n" +
-                "\n" +
-                "Is Hadoop easy to learn? \n" +
-                "\n" +
-                "For most professionals who are from various backgrounds like - Java, PHP, .net, mainframes, data warehousing, DBAs, data analytics - and want to get into a career in Hadoop and Big Data, this is the first question they ask themselves and their peers.','Velachery','https://s3.amazonaws.com/files.dezyre.com/images/blog/How+much+Java+is+required+to+learn+Hadoop_3.png','9.00')");
+        dp.execSQL("insert into Event(dates ,title ,cost ,about ,location ,image_uri,time,organiser )values('1-03-2017',' Ekadasi Purappadu','0 ','On February 22nd 2017, on the occasion of Maasi Ekadasi, purappadu for Sri Veeraraghava Perumal took place in the evening around 5.30 pm','Thiruvallur','http://www.tierratravels.com/travelblog/wp-content/uploads/2014/01/Brihadeeswara-Temple-Tamilnadu-10.jpg','9.00','')");
+        dp.execSQL("insert into Event(dates ,title ,cost ,about ,location ,image_uri,time,organiser )values('2-03-2017','Ratha Sapthami Utsavam','0','Rathasapthami utsavam was celebrated across many temples. At Thiruvallur Sri Veeraraghava Perumal temple.','Srivilliputhur" +
+                "" +
+                "','http://media02.hongkiat.com/beautiful-temples-asia/temple-of-heaven.jpg','10.00',' ')");
         Cursor cur = dp.rawQuery("Select * from Event", null);
 
 

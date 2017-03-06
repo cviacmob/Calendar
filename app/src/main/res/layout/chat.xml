@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chat">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="95dp"
+        android:layout_marginBottom="110dp"
+
+        android:id="@+id/r2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/t13"
+            android:layout_gravity="center"
+
+            android:text=" மூல நட்சத்திரம் "
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="60dp"
+        android:id="@+id/aaa" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/aaa"
+        android:layout_alignLeft="@+id/r2"
+        android:layout_alignStart="@+id/r2"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:id="@+id/bbb" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bbb"
+        android:layout_alignRight="@+id/r2"
+        android:layout_alignEnd="@+id/r2"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
+        android:id="@+id/ccc" />
+
+    <TextView
+        android:text="கே"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ccc"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="13dp"
+        android:layout_marginEnd="13dp"
+        android:id="@+id/textView8" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/r2"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_marginTop="52dp"
+        android:id="@+id/ddd" />
+
+    <TextView
+        android:text="சந் சூ "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignLeft="@+id/textView10"
+        android:layout_alignStart="@+id/textView10"
+        android:layout_marginBottom="42dp"
+        android:id="@+id/hhh" />
+
+    <TextView
+        android:text="பு சு"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jjj"
+        android:layout_alignBaseline="@+id/hhh"
+        android:layout_alignBottom="@+id/hhh"
+        android:layout_alignLeft="@+id/bbb"
+        android:layout_alignStart="@+id/bbb" />
+
+    <TextView
+        android:text="வி"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="54dp"
+        android:id="@+id/ggg"
+        android:layout_alignBottom="@+id/r2"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
+
+    <TextView
+        android:text="சனி "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fff"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBaseline="@+id/ggg"
+        android:layout_alignBottom="@+id/ggg"
+        android:layout_toLeftOf="@+id/bbb"
+        android:layout_toRightOf="@+id/ddd"
+        android:layout_toEndOf="@+id/ddd" />
+
+    <TextView
+        android:text="ல"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView14"
+        android:layout_alignBaseline="@+id/kkk"
+        android:layout_alignBottom="@+id/kkk"
+        android:layout_alignRight="@+id/textView8"
+        android:layout_alignEnd="@+id/textView8"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eee"
+        android:layout_below="@+id/ddd"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="மா"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/kkk"
+        android:layout_alignBaseline="@+id/jjj"
+        android:layout_alignBottom="@+id/jjj"
+        android:layout_toLeftOf="@+id/ccc"
+        android:layout_toStartOf="@+id/ccc"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp" />
+
+
+</RelativeLayout>
