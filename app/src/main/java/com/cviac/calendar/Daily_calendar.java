@@ -116,14 +116,22 @@ public class Daily_calendar extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "Refresh selected", Toast.LENGTH_SHORT).show();
+
         }
         if(id==R.id.action){
 
            in=new Intent(Daily_calendar.this,MyCalendarActivity.class);
             startActivity(in);
+
         }
-        onBackPressed();
+        if(id==R.id.pro)
+        {
+            in=new Intent(Daily_calendar.this,My_Profile.class);
+            startActivity(in);
+
+        }
+
+
 
 
 
@@ -192,6 +200,7 @@ public class Daily_calendar extends ActionBarActivity {
         private static final String ARG_SECTION_NUMBER = "section_number";
         String formattedDate;
         DatabaseAccess databaseAccess ;
+        DatabaseAccess2 databaseAccess2;
         Cursor cursor;
 
         MyDataHolder holde=new MyDataHolder();
@@ -269,6 +278,48 @@ public class Daily_calendar extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Intent pa=new Intent(getActivity(),Panchaingam_chat.class);
+                    databaseAccess2=DatabaseAccess2.getInstance1(getActivity());
+                    databaseAccess2.open();
+
+                    //tamil_date.setText(databaseAccess2.getbox13(formattedDate));
+                    Cursor cursoras=databaseAccess2.getDayReacordas(formattedDate);
+                    cursoras.moveToNext();
+                    while (!cursoras.isAfterLast())
+                    {
+                        String as=(cursoras.getString(2));
+                        //as=(cursoras.getString(2));
+                        pa.putExtra("bo1",as);
+                        as=(cursoras.getString(3));
+                        pa.putExtra("bo2",as);
+                        as=(cursoras.getString(4));
+                        pa.putExtra("bo3",as);
+                        as=(cursoras.getString(5));
+                        pa.putExtra("bo4",as);
+                        as=(cursoras.getString(6));
+                        pa.putExtra("bo5",as);
+                        as=(cursoras.getString(7));
+                        pa.putExtra("bo6",as);
+                        as=(cursoras.getString(8));
+                        pa.putExtra("bo7",as);
+                        as=(cursoras.getString(9));
+                        pa.putExtra("bo8",as);
+                        as=(cursoras.getString(10));
+                        pa.putExtra("bo9",as);
+                        as=(cursoras.getString(11));
+                        pa.putExtra("bo10",as);
+                        as=(cursoras.getString(12));
+                        pa.putExtra("bo11",as);
+                        as=(cursoras.getString(13));
+                        pa.putExtra("bo12",as);
+                        as=(cursoras.getString(14));
+                        pa.putExtra("bo13",as);
+
+                        cursoras.moveToNext();
+                    }
+                    databaseAccess2.close();
+
+
+
                     startActivity(pa);
                 }
             });
@@ -608,7 +659,7 @@ public class Daily_calendar extends ActionBarActivity {
 
 
 
-       DatabaseAccess2 databaseAccess2 = DatabaseAccess2.getInstance1(getActivity());
+            databaseAccess2= DatabaseAccess2.getInstance1(getActivity());
             databaseAccess2.open();
 
             //tamil_date.setText(databaseAccess2.getbox13(formattedDate));

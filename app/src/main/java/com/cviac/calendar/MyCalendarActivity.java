@@ -180,9 +180,9 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 		private static final int DAY_OFFSET = 1;
 		private final String[] weekdays = new String[]{"Sun", "Mon", "Tue",
 				"Wed", "Thu", "Fri", "Sat"};
-		private final String[] months = {"01", "02", "03",
-				"04", "05", "06", "07", "08", "09",
-				"10", "11", "12"};
+		private final String[] months = {"January", "February", "March",
+				"April", "May", "June", "July", "August", "September",
+				"October", "November", "December"};
 		private final int[] daysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30,
 				31, 30, 31};
 		private int daysInMonth;
@@ -196,6 +196,10 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 		private final SimpleDateFormat dateFormatter = new SimpleDateFormat(
 				"dd-MMM-yyyy");
 		private String data;
+		String s1;
+		String s2;
+		String s5;
+
 
 		// Days in Current Month
 		public GridCellAdapter(Context context, int calendar_day_gridcell, int i, int textViewResourceId,
@@ -570,7 +574,9 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 			Log.d(tag, "Current Day: " + getCurrentDayOfMonth());
 			String[] day_color = list.get(position).split("-");
 			String theday = day_color[0];
+
 			String themonth = day_color[2];
+
 			String theyear = day_color[3];
 
 			String[] tom_colour = tamil.get(position).split("-");
@@ -656,11 +662,59 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 		public void onClick(View view) {
 			date_month_year = (String) view.getTag();
 			String [] dsp=date_month_year.split("-");
-			String s1=dsp[0];
-			String s2=dsp[1];
+			 s1=dsp[0];
+			 s2=dsp[1];
+			if (s2 == "January") {
+				s5="01";
+			}
+
+			if (s2 == "February") {
+				s5="02";
+
+			}
+			if (s2 .equals("March")) {
+				s5="03";
+			}
+			if (s2.equals("April")) {
+				s5="04";
+
+			}
+			if (s2 .equals("May") ) {
+				s2="05";
+
+			}
+			if (s2 .equals("June") ) {
+				s5="06";
+
+			}
+			if (s2 .equals("July") ) {
+				s5="07";
+
+			}
+			if (s2 .equals("August") ) {
+				s5="08";
+
+			}
+
+			if (s2 .equals("September")) {
+				s5="09";
+
+			}
+			if (s2 .equals("October")) {
+				s2="10";
+
+			}
+			if (s2 .equals("November")) {
+				s5="11";
+
+			}
+			if (s2 .equals("December") ) {
+				s5="12";
+
+			}
 			String s3=dsp[2];
 			String s4=s3.substring(0,4);
-			String date=s1+"-"+s2+"-"+s4;
+			String date=s1+"-"+s5+"-"+s4;
 
 			Toast.makeText(getApplication(),date_month_year,Toast.LENGTH_LONG).show();
 			Intent daily=new Intent(getApplication(),Daily_calendar.class);

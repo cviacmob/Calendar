@@ -3,6 +3,9 @@
     package="com.cviac.calendar">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -63,8 +66,11 @@
         <activity
             android:name=".Event_details"
             android:label="@string/title_activity_event_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Panchaingam_chat"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Panchaingam_chat" />
+        <activity android:name=".My_Profile"
+            android:label="MyProfile"
+            ></activity>
     </application>
 
 </manifest>

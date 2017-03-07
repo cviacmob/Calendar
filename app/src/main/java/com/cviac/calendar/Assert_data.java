@@ -22,6 +22,7 @@ public class Assert_data extends Activity implements View.OnClickListener, LoadI
 
 
 
+
     public static final String IMAGE_URL = "http://photos.wikimapia.org/p/00/00/58/20/98_big.jpg";
     ImageView im;
     Button b1;

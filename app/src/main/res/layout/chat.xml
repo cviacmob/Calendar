@@ -68,7 +68,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="13dp"
         android:layout_marginEnd="13dp"
-        android:id="@+id/textView8" />
+        android:id="@+id/daa" />
 
     <TextView
         android:text=""
@@ -108,7 +108,7 @@
         android:layout_marginBottom="54dp"
         android:id="@+id/ggg"
         android:layout_alignBottom="@+id/r2"
-        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignLeft="@+id/lll"
         android:layout_alignStart="@+id/textView14" />
 
     <TextView
@@ -127,10 +127,10 @@
         android:text="ல"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView14"
+        android:id="@+id/lll"
         android:layout_alignBaseline="@+id/kkk"
         android:layout_alignBottom="@+id/kkk"
-        android:layout_alignRight="@+id/textView8"
+        android:layout_alignRight="@+id/daa"
         android:layout_alignEnd="@+id/textView8"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp" />
