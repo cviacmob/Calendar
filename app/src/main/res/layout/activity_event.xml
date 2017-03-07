@@ -10,9 +10,7 @@
     tools:context="com.cviac.calendar.Event">
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
 
 <!--        <RelativeLayout
             android:layout_width="match_parent"
@@ -366,5 +364,5 @@
 
             </RelativeLayout>
 <!--        </RelativeLayout>-->
-    </ScrollView>
+
 </RelativeLayout>

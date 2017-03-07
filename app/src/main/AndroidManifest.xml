@@ -67,10 +67,8 @@
             android:name=".Event_details"
             android:label="@string/title_activity_event_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Panchaingam_chat" />
-        <activity android:name=".My_Profile"
-            android:label="MyProfile"
-            ></activity>
+        <activity android:name=".Panchaingam_chat"
+            android:label="Panchaingam"></activity>
     </application>
 
 </manifest>

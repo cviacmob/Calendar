@@ -52,6 +52,7 @@
                         android:paddingTop="5dp"
                         android:textStyle="bold"
                         android:textColor="#ffffff"
+                        android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tamil_month"
@@ -168,8 +169,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="5dp"
-
-
                     android:layout_alignParentRight="true"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -245,6 +244,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background=""
                         android:id="@+id/onclick2"/>
 
                 <RelativeLayout
@@ -654,10 +654,8 @@
                     android:textSize="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:minWidth="47dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_alignLeft="@+id/ff"
-                    android:layout_alignStart="@+id/ff" />
+                    android:minWidth="40dp"
+                    android:layout_marginTop="14dp" />
 
                 <TextView
                     android:text=""

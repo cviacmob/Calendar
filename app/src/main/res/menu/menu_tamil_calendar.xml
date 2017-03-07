@@ -12,7 +12,4 @@
         android:orderInCategory="100"
         android:title="Monthly"/>
 
-    <item android:id="@+id/pro"
-        android:orderInCategory="100"
-        android:title="Profile"/>
 </menu>

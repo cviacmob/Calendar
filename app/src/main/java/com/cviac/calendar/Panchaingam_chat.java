@@ -2,15 +2,20 @@ package com.cviac.calendar;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.TextView;
 
-public class Panchaingam_chat extends Activity {
+public class Panchaingam_chat extends AppCompatActivity {
 
     TextView bo1,bo2,bo3,bo4,bo5,bo6,bo7,bo8,bo9,bo10,bo11,bo12,bo13;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         bo1=(TextView) findViewById(R.id.aaa);
         bo2=(TextView) findViewById(R.id.bbb);
@@ -45,9 +50,23 @@ public class Panchaingam_chat extends Activity {
 
 
 
-
-
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        onBackPressed();
+
+        //noinspection SimplifiableIfStatement
+
+
+        return true;
+
+        //return super.onOptionsItemSelected(item);
+    }
+
 
 
 

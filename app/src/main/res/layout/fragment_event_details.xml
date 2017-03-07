@@ -1,41 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_event"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:focusable="true"
+    android:background="#FFF6F6"
+    android:id="@+id/scrolFullText"
+    >
 
 
 
-    tools:context="com.cviac.calendar.Event">
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:isScrollContainer="true">
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/cb1">
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/cardView5"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginTop="5dp">
+
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:background="#FCFDFF"
+                                android:id="@+id/cardView5">
 
                                 <ImageView
                                     android:layout_width="match_parent"
@@ -47,7 +40,7 @@
                                     android:layout_alignParentLeft="true"
                                     android:layout_alignParentStart="true" />
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/l1"
@@ -65,11 +58,11 @@
                                         android:text="java course chennai"
                                         android:id="@+id/title" />
 
-                                </LinearLayout>
+                                </RelativeLayout>
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="20dp"
                                     android:id="@+id/l3"
                                     android:layout_marginTop="6dp"
                                     android:layout_below="@+id/l2"
@@ -83,14 +76,15 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="3dp"
+                                        android:layout_toRightOf="@+id/place_icon"
                                         android:id="@+id/organise"
                                         android:text="organiser"/>
 
 
-                                </LinearLayout>
-                                <LinearLayout
+                                </RelativeLayout>
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="20dp"
                                     android:layout_marginTop="6dp"
                                     android:layout_marginBottom="6dp"
                                     android:layout_below="@+id/l3"
@@ -101,18 +95,22 @@
                                         android:layout_height="match_parent"
                                         android:id="@+id/eve_icon"
                                         android:src="@mipmap/clock" />
+
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="3dp"
                                         android:text="9.00 am"
-                                        android:id="@+id/eve_time"/>
+                                        android:gravity="center"
+                                        android:id="@+id/eve_time"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_toRightOf="@+id/eve_icon"
+                                        android:layout_toEndOf="@+id/eve_icon" />
 
-                                </LinearLayout>
+                                </RelativeLayout>
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="20dp"
                                     android:id="@+id/l2"
                                     android:layout_marginTop="10dp"
                                     android:orientation="horizontal"
@@ -130,31 +128,27 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="3dp"
                                         android:id="@+id/date_event"
+                                        android:layout_toRightOf="@+id/date_icon"
                                         android:text="28-02-2017"/>
 
-                                </LinearLayout>
+                                </RelativeLayout>
 
                             </RelativeLayout>
 
 
-                        </android.support.v7.widget.CardView>
 
 
 
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/cardView5"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginTop="1dp"
-                            android:id="@+id/cardView4">
 
-                            <LinearLayout
+
+
+                            <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:id="@+id/l5"
+                                android:id="@+id/cardView4"
+                                android:layout_below="@+id/cardView5"
                                 android:layout_marginTop="5dp"
+                                android:background="#FCFDFF"
                                 android:layout_marginBottom="5dp"
                                 android:orientation="horizontal"
                                 android:weightSum="3">
@@ -162,7 +156,7 @@
                                 <ImageView
                                     android:layout_width="30dp"
                                     android:layout_height="24dp"
-                                    android:layout_marginLeft="12dp"
+                                    android:layout_marginLeft="16dp"
                                     android:layout_marginTop="3dp"
                                     android:id="@+id/date_icon"
                                     android:src="@mipmap/rupees"
@@ -172,7 +166,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/event_cost"
+                                    android:layout_marginLeft="10dp"
                                     android:textSize="20dp"
+                                    android:layout_toRightOf="@+id/date_icon"
                                     android:layout_marginTop="2dp"
                                     android:textColor="#202020"
                                     android:text="0" />
@@ -181,30 +177,28 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/on"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="2dp"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="17dp"
                                     android:text="onwards"
-                                    android:layout_weight="0.13" />
-                            </LinearLayout>
-                        </android.support.v7.widget.CardView>
+                                    android:layout_weight="0.13"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@+id/event_cost"
+                                    android:layout_toEndOf="@+id/event_cost"
+                                    android:layout_marginStart="17dp" />
+                            </RelativeLayout>
 
 
 
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="1dp"
-                            android:id="@+id/card"
-                            android:layout_below="@+id/cardView4"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true">
 
 
-                            <LinearLayout
+
+                            <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:id="@+id/ccc"
+                                android:id="@+id/card"
+                                android:background="#FCFDFF"
+                                android:layout_below="@+id/cardView4"
                                 >
 
                                 <TextView
@@ -242,35 +236,25 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:background="#ffffff"
+
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:background="#F9D6D1"
                                     android:id="@+id/more_about"
-                                    android:layout_below="@+id/ccc"
-                                    android:text="more"/>
+                                    android:layout_below="@+id/about"
+                                    android:text="more" />
 
 
-                            </LinearLayout>
+                            </RelativeLayout>
 
-
-
-                        </android.support.v7.widget.CardView>
-
-
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="300dp"
-                            android:id="@+id/card5"
-                            android:layout_marginTop="4dp"
-                            android:layout_below="@+id/card"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true">
-
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/lle"
+                                android:layout_height="300dp"
+                                android:id="@+id/card5"
+                                android:background="#FCFDFF"
+                                android:layout_below="@+id/card"
                                 android:orientation="vertical">
                                 <TextView
                                     android:id="@+id/textView3"
@@ -286,29 +270,33 @@
                                     android:layout_alignParentLeft="true"
                                     android:layout_alignParentStart="true" />
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="250dp"
                                     android:id="@+id/l3"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="30dp"
                                     android:layout_below="@+id/lle"
                                     android:orientation="horizontal">
-                                    <ImageView
-                                        android:layout_width="68dp"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_height="match_parent"
-                                        android:id="@+id/place_icon"
-                                        android:src="@mipmap/mapicon"/>
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_toRightOf="@+id/place_icon"
 
                                         android:textColor="#606060"
 
                                         android:id="@+id/event_place"
                                         android:text="madurai"/>
-                                </LinearLayout>
+
+                                    <ImageView
+                                        android:layout_width="68dp"
+                                        android:layout_height="18dp"
+                                        android:id="@+id/place_icon"
+                                        android:src="@mipmap/mapicon"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true" />
+                                </RelativeLayout>
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -319,9 +307,8 @@
                                     android:src="@mipmap/map_image"/>
 
 
-                            </LinearLayout>
+                            </RelativeLayout>
 
-                        </android.support.v7.widget.CardView>
 
 
 
@@ -329,8 +316,9 @@
 
 
                 </RelativeLayout>
+</ScrollView>
 
 
-        </RelativeLayout>
-    </ScrollView>
+
+
 </RelativeLayout>

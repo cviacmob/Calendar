@@ -708,7 +708,7 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 				s5="11";
 
 			}
-			if (s2 .equals("December") ) {
+			if (s2 == "December") {
 				s5="12";
 
 			}
@@ -717,9 +717,9 @@ public class MyCalendarActivity extends Activity implements OnClickListener {
 			String date=s1+"-"+s5+"-"+s4;
 
 			Toast.makeText(getApplication(),date_month_year,Toast.LENGTH_LONG).show();
-			Intent daily=new Intent(getApplication(),Daily_calendar.class);
+		/*	Intent daily=new Intent(getApplication(),Daily_calendar.class);
 					daily.putExtra("dats",date);
-			startActivity(daily);
+			startActivity(daily);*/
 
 
 
